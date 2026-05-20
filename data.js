@@ -1,5 +1,5 @@
 // 코워크시티 YouTube 셀프 리포트 데이터
-// 새 Studio 스샷이 들어올 때마다 이 파일만 수정하면 페이지가 즉시 반영됩니다.
+// 새 Studio 스샷이 들어올 때마다 해당 기간 객체만 갈아끼우면 페이지가 즉시 반영됩니다.
 
 window.REPORT_DATA = {
   channel: {
@@ -13,26 +13,59 @@ window.REPORT_DATA = {
       videos: 27
     }
   },
-  period: {
-    label: "지난 28일",
-    from: "2026-04-21",
-    to: "2026-05-18"
+
+  // 현재 기본 선택 기간 (d7 / d28 / d90 / d365 / ltm / custom)
+  current_period: "d28",
+
+  // 기간별 지표 — 데이터 없는 기간은 data: null
+  // 새 스샷 들어올 때마다 해당 키만 채워주면 UI에 자동 반영됩니다.
+  periods: {
+    d7: {
+      label: "지난 7일",
+      data: null
+    },
+    d28: {
+      label: "지난 28일",
+      from: "2026-04-21",
+      to:   "2026-05-18",
+      data: {
+        views:            { display: "49.7만",  vs_norm: "평소와 거의 비슷", norm_range: "197,000 ~ 533,000" },
+        watch_time_hours: { display: "2.2천 h", vs_norm: "평소와 거의 비슷" },
+        new_subscribers:  { display: "+273",    vs_norm: "평소와 거의 비슷" }
+      },
+      verdict: {
+        headline: "분발해 주세요",
+        detail:   "채널 조회수가 평소 28일간 197K ~ 533K 범위 안 (49.7만). 평소와 거의 동일한 패턴."
+      }
+    },
+    d90: {
+      label: "지난 90일",
+      data: null
+    },
+    d365: {
+      label: "지난 365일",
+      data: null
+    },
+    ltm: {
+      label: "게시 이후",
+      data: null
+    },
+    custom: {
+      label: "기간 설정",
+      from: null,
+      to:   null,
+      data: null
+    }
   },
-  metrics_28d: {
-    views:            { display: "49.7만",  vs_norm: "평소와 거의 비슷", norm_range: "197,000 ~ 533,000" },
-    watch_time_hours: { display: "2.2천 h", vs_norm: "평소와 거의 비슷" },
-    new_subscribers:  { display: "+273",    vs_norm: "평소와 거의 비슷" }
-  },
-  studio_verdict: {
-    headline: "분발해 주세요",
-    detail:   "채널 조회수가 평소 28일간 197K ~ 533K 범위 안 (49.7만). 평소와 거의 동일한 패턴."
-  },
+
   realtime: { views_48h: 2903 },
+
   top_content_48h: [
     { rank: 1, title: "직원 채용도 영업이다",       format: "Shorts", views_48h: 1508 },
     { rank: 2, title: "일론머스크의 시간관리",       format: "Shorts", views_48h: 449 },
     { rank: 3, title: "집 주소로 #사업자등록 하면",  format: "Shorts", views_48h: 132 }
   ],
+
   video_reach: {
     note: "개별 영상 분석 → 도달범위 탭 (게시 이후 누적)",
     videos: [
@@ -88,15 +121,18 @@ window.REPORT_DATA = {
       }
     ]
   },
+
   insight_callout: {
     title: "골든 토픽 발견",
     body: "‘홈택스 + 구체적 절차’ 영상은 CTR 10~17%로 검색 트래픽이 강함. 추상적·질문형 제목은 3~5%로 떨어짐.",
     action: "다음 영상은 ‘홈택스 OOO 하는 법’ 패턴으로 시도해볼 가치 있음."
   },
+
   hypotheses: [
     { id: "H1", status: "draft", text: "(여기에 다음 영상 가설 입력)" },
     { id: "H2", status: "draft", text: "(예: 쇼츠 30s 후킹 vs 15s 후킹 비교)" },
     { id: "H3", status: "draft", text: "(예: '직원 채용' 토픽 후속 시리즈)" }
   ],
+
   updated_at: "2026-05-18"
 };
