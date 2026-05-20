@@ -94,17 +94,27 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
 .verdict-detail{font-size:15px;color:var(--mute);line-height:1.6}
 .verdict-source{margin-top:6px;font-size:11px;color:#999;letter-spacing:0.08em}
 
-/* TOP CONTENT */
-.top-list{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.top-row{display:grid;grid-template-columns:60px 80px 1fr 110px 60px;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line)}
+/* TOP CONTENT — split shorts vs long */
+.top-split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.top-col{display:flex;flex-direction:column;gap:10px}
+.top-col-head{display:flex;align-items:baseline;gap:10px;padding:0 4px}
+.top-col-head .ic{width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900}
+.top-col-head .ic.short{background:var(--neg)}
+.top-col-head .ic.long{background:#2B5273}
+.top-col-head .ttl{font-family:'Noto Serif KR',serif;font-weight:900;font-size:18px;letter-spacing:-0.02em}
+.top-col-head .sub{font-size:11px;color:var(--mute);letter-spacing:0.10em;text-transform:uppercase;font-weight:700;margin-left:auto}
+.top-list{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;flex:1}
+.top-row{display:grid;grid-template-columns:36px 1fr 90px;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line)}
 .top-row:last-child{border-bottom:none}
-.top-row.head{background:#FBF8F0;font-size:11px;color:var(--mute);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:12px 22px}
-.top-rank{font-family:'Noto Serif KR',serif;font-weight:900;font-size:32px;color:var(--brand);line-height:1}
-.top-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:0.10em;color:#fff;background:var(--neg);padding:4px 8px;border-radius:4px;text-transform:uppercase;width:fit-content}
-.top-badge.long{background:#2B5273}
-.top-title{font-size:17px;font-weight:600;letter-spacing:-0.01em}
-.top-num{font-family:'Inter',sans-serif;font-weight:900;font-size:22px;text-align:right;letter-spacing:-0.02em}
-.top-unit{font-size:11px;color:var(--mute);text-align:right;letter-spacing:0.08em}
+.top-row.placeholder{display:block;padding:24px 22px;color:var(--mute);font-size:13px;text-align:center;line-height:1.7;background:#FBF7EC}
+.top-row.placeholder strong{color:var(--ink);font-weight:700}
+.top-rank{font-family:'Noto Serif KR',serif;font-weight:900;font-size:24px;color:var(--brand);line-height:1;text-align:center}
+.top-rank.star{color:var(--gold)}
+.top-title{display:flex;flex-direction:column;gap:3px;min-width:0}
+.top-title .t{font-size:14px;font-weight:600;letter-spacing:-0.01em;line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.top-title .m{font-size:10px;color:var(--mute);letter-spacing:0.06em;text-transform:uppercase;font-weight:700}
+.top-num{font-family:'Inter',sans-serif;font-weight:900;font-size:18px;text-align:right;letter-spacing:-0.02em;line-height:1.2}
+.top-num .u{font-size:10px;color:var(--mute);font-weight:600;letter-spacing:0.08em;display:block}
 
 /* VIDEO REACH COMPARISON */
 .vid-grid{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
@@ -151,9 +161,7 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
 @media (max-width: 900px){
   .ns-grid{grid-template-columns:repeat(2,1fr)}
   .hyp-grid{grid-template-columns:1fr}
-  .top-row{grid-template-columns:50px 1fr 90px;gap:10px;padding:14px 16px}
-  .top-row > .top-badge, .top-row > .top-unit{display:none}
-  .top-row.head{grid-template-columns:50px 1fr 90px}
+  .top-split{grid-template-columns:1fr;gap:24px}
   .vid-row{grid-template-columns:30px 1fr 70px 110px;gap:10px;padding:14px 16px}
   .vid-row > .vid-num{display:none}
   .vid-row.head{grid-template-columns:30px 1fr 70px 110px}
@@ -197,14 +205,31 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
     <div id="verdict-wrap"></div>
   </section>
 
-  <!-- 03 TOP CONTENT 48H -->
+  <!-- 03 TOP CONTENT — split shorts vs long -->
   <section class="section">
     <div class="section-head">
       <div class="section-num">03</div>
-      <div class="section-title">TOP 콘텐츠 <span style="font-weight:400;color:var(--mute);font-family:'Pretendard',sans-serif;font-size:15px">· 지난 48시간</span></div>
+      <div class="section-title">TOP 콘텐츠</div>
       <div class="section-sub" id="rt-views"></div>
     </div>
-    <div class="top-list" id="top-list"></div>
+    <div class="top-split">
+      <div class="top-col">
+        <div class="top-col-head">
+          <span class="ic short">S</span>
+          <span class="ttl">TOP 쇼츠</span>
+          <span class="sub">지난 48시간</span>
+        </div>
+        <div class="top-list" id="top-shorts"></div>
+      </div>
+      <div class="top-col">
+        <div class="top-col-head">
+          <span class="ic long">▶</span>
+          <span class="ttl">TOP 일반 영상</span>
+          <span class="sub">누적 조회</span>
+        </div>
+        <div class="top-list" id="top-longs"></div>
+      </div>
+    </div>
   </section>
 
   <!-- 04 VIDEO REACH COMPARISON -->
@@ -383,27 +408,46 @@ function renderVerdict(){
 }
 
 function renderTopContent(){
-  document.getElementById('rt-views').textContent = `실시간 48h 조회 ${data.realtime.views_48h.toLocaleString()}`;
-  const head = `
-    <div class="top-row head">
-      <div>#</div>
-      <div>포맷</div>
-      <div>제목</div>
-      <div style="text-align:right">조회수</div>
-      <div style="text-align:right">단위</div>
-    </div>`;
-  const rows = data.top_content_48h.map(t => {
-    const isShort = (t.format || '').toLowerCase().includes('short');
-    return `
-      <div class="top-row">
-        <div class="top-rank">${t.rank}</div>
-        <div><span class="top-badge ${isShort?'':'long'}">${t.format}</span></div>
-        <div class="top-title">${t.title}</div>
-        <div class="top-num">${t.views_48h.toLocaleString()}</div>
-        <div class="top-unit">회</div>
+  document.getElementById('rt-views').textContent = `누적 조회수 기준 · 실시간 48h 채널 조회 ${data.realtime.views_48h.toLocaleString()}`;
+
+  // TOP SHORTS — 누적 조회수
+  const sv = data.top_shorts.videos;
+  if (!sv || sv.length === 0) {
+    document.getElementById('top-shorts').innerHTML = `
+      <div class="top-row placeholder" style="padding:40px 22px;text-align:center">
+        <strong>쇼츠 누적 조회수 미입력</strong><br><br>
+        YouTube Studio 좌측 메뉴 <strong>[콘텐츠]</strong> 클릭 → 영상 표 한 장이면<br>
+        쇼츠·일반 영상 27개 누적 조회수가 한 번에 채워집니다.
       </div>`;
-  }).join('');
-  document.getElementById('top-list').innerHTML = head + rows;
+  } else {
+    const sortedShorts = [...sv].sort((a,b) => b.views_cumulative - a.views_cumulative);
+    document.getElementById('top-shorts').innerHTML = sortedShorts.map((s, i) => `
+      <div class="top-row">
+        <div class="top-rank ${i===0?'star':''}">${i===0?'★':i+1}</div>
+        <div class="top-title">
+          <div class="t">${s.title}</div>
+          <div class="m">SHORTS · 게시 후 ${s.published_days_ago}일</div>
+        </div>
+        <div class="top-num">${s.views_display}<span class="u">회 (누적)</span></div>
+      </div>`).join('');
+  }
+
+  // TOP LONG — 영상별 도달범위에서 누적 조회수 기준 정렬
+  const longs = [...data.video_reach.videos].sort((a,b) => b.views - a.views);
+  const longRows = longs.map((v, i) => `
+    <div class="top-row">
+      <div class="top-rank ${i===0?'star':''}">${i===0?'★':i+1}</div>
+      <div class="top-title">
+        <div class="t">${v.title}</div>
+        <div class="m">${v.duration} · 게시 후 ${v.days_since_published}일</div>
+      </div>
+      <div class="top-num">${v.views_display}<span class="u">회 (누적)</span></div>
+    </div>`).join('');
+  const longFooter = `
+    <div class="top-row placeholder">
+      현재 ${longs.length}개 영상 표시. <strong>콘텐츠 탭 리스트</strong>로 전체 ${data.channel.totals.videos}개 확장 가능.
+    </div>`;
+  document.getElementById('top-longs').innerHTML = longRows + longFooter;
 }
 
 function renderVideoReach(){

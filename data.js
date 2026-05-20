@@ -60,11 +60,12 @@ window.REPORT_DATA = {
 
   realtime: { views_48h: 2903 },
 
-  top_content_48h: [
-    { rank: 1, title: "직원 채용도 영업이다",       format: "Shorts", views_48h: 1508 },
-    { rank: 2, title: "일론머스크의 시간관리",       format: "Shorts", views_48h: 449 },
-    { rank: 3, title: "집 주소로 #사업자등록 하면",  format: "Shorts", views_48h: 132 }
-  ],
+  // 쇼츠 누적 조회수 — 콘텐츠 탭 리스트가 들어오면 자동 채움
+  // 형식: { title, views_cumulative, views_display, published_days_ago }
+  top_shorts: {
+    note: "쇼츠 누적 조회수 — 콘텐츠 탭 리스트로 채움",
+    videos: null
+  },
 
   video_reach: {
     note: "개별 영상 분석 → 도달범위 탭 (게시 이후 누적)",
