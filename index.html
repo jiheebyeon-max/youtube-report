@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>코워크시티 · YouTube 셀프 리포트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EC;
+  --panel:#FFFFFF;
+  --ink:#0E120F;
+  --mute:#6E6A60;
+  --line:#E6DFCE;
+  --brand:#0F4D38;
+  --brand-deep:#093225;
+  --brand-soft:#D9E6DF;
+  --gold:#B8801F;
+  --neg:#C8442C;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter','Noto Sans KR',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding:48px 32px 80px}
+.serif{font-family:'Noto Serif KR','Pretendard',serif}
+
+/* HEADER */
+.header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0 28px;border-bottom:1px solid var(--line);margin-bottom:36px}
+.brand{display:flex;align-items:center;gap:18px}
+.logo{width:64px;height:64px;background:var(--brand-deep);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-weight:900;font-size:36px;position:relative;border:2px solid var(--gold)}
+.logo::before,.logo::after{content:'';position:absolute;width:8px;height:1px;background:rgba(255,255,255,0.35);top:50%}
+.logo::before{left:-12px}
+.logo::after{right:-12px}
+.brand-text{display:flex;flex-direction:column;gap:2px}
+.brand-name{font-family:'Noto Serif KR',serif;font-weight:900;font-size:22px;letter-spacing:-0.02em}
+.brand-sub{font-size:13px;color:var(--mute);letter-spacing:0.02em}
+.brand-handle{font-size:12px;color:var(--brand);font-weight:700;text-decoration:none}
+.brand-handle:hover{text-decoration:underline}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:13px;color:var(--mute)}
+.period-chip{background:var(--brand);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:0.06em}
+
+/* SECTION TITLE */
+.section{margin-bottom:48px}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+.section-num{font-family:'Noto Serif KR',serif;font-weight:900;font-size:28px;color:var(--gold)}
+.section-title{font-family:'Noto Serif KR',serif;font-weight:900;font-size:24px;letter-spacing:-0.02em}
+.section-sub{font-size:13px;color:var(--mute);margin-left:auto}
+
+/* NORTH STAR — 큰 숫자 카드 그리드 */
+.ns-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ns-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 22px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
+.ns-card.hero{background:var(--brand);color:#fff;border-color:var(--brand)}
+.ns-card.hero .ns-label,.ns-card.hero .ns-vs{color:rgba(255,255,255,0.75)}
+.ns-card.hero .ns-sub{color:rgba(255,255,255,0.6)}
+.ns-label{font-size:12px;color:var(--mute);letter-spacing:0.18em;text-transform:uppercase;font-weight:700}
+.ns-value{font-family:'Inter','Pretendard',sans-serif;font-weight:900;font-size:54px;letter-spacing:-0.04em;line-height:1}
+.ns-vs{font-size:12px;color:var(--mute);display:flex;align-items:center;gap:6px}
+.ns-vs::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
+.ns-sub{font-size:11px;color:#999;letter-spacing:0.02em;margin-top:4px}
+
+/* VERDICT */
+.verdict{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:14px;padding:24px 28px;display:flex;flex-direction:column;gap:8px;margin-bottom:48px}
+.verdict-tag{font-size:11px;font-weight:700;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+.verdict-head{font-family:'Noto Serif KR',serif;font-weight:900;font-size:28px;letter-spacing:-0.02em}
+.verdict-detail{font-size:15px;color:var(--mute);line-height:1.6}
+.verdict-source{margin-top:6px;font-size:11px;color:#999;letter-spacing:0.08em}
+
+/* TOP CONTENT */
+.top-list{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.top-row{display:grid;grid-template-columns:60px 60px 1fr 110px 110px;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.top-row:last-child{border-bottom:none}
+.top-row.head{background:#FBF8F0;font-size:11px;color:var(--mute);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:12px 22px}
+.top-rank{font-family:'Noto Serif KR',serif;font-weight:900;font-size:32px;color:var(--brand);line-height:1}
+.top-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:0.10em;color:#fff;background:var(--neg);padding:4px 8px;border-radius:4px;text-transform:uppercase;width:fit-content}
+.top-badge.long{background:#2B5273}
+.top-title{font-size:17px;font-weight:600;letter-spacing:-0.01em}
+.top-num{font-family:'Inter',sans-serif;font-weight:900;font-size:22px;text-align:right;letter-spacing:-0.02em}
+.top-unit{font-size:11px;color:var(--mute);text-align:right;letter-spacing:0.08em}
+
+/* VIDEO REACH COMPARISON */
+.vid-grid{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.vid-row{display:grid;grid-template-columns:36px 1fr 70px 100px 90px 90px;align-items:center;gap:14px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.vid-row:last-child{border-bottom:none}
+.vid-row.head{background:#FBF8F0;font-size:11px;color:var(--mute);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:12px 22px}
+.vid-row.gold{background:linear-gradient(90deg,rgba(184,128,31,0.06),transparent)}
+.vid-rank{font-family:'Noto Serif KR',serif;font-weight:900;font-size:22px;color:var(--brand);line-height:1;text-align:center}
+.vid-rank.star{color:var(--gold)}
+.vid-title{display:flex;flex-direction:column;gap:4px;min-width:0}
+.vid-title .t{font-size:15px;font-weight:600;letter-spacing:-0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vid-title .m{font-size:11px;color:var(--mute);letter-spacing:0.04em;display:flex;gap:10px}
+.vid-title .tag{font-size:10px;font-weight:800;letter-spacing:0.10em;color:var(--brand);background:var(--brand-soft);padding:2px 6px;border-radius:4px;text-transform:uppercase}
+.vid-dur{font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--mute);text-align:right}
+.vid-bar-wrap{display:flex;align-items:center;gap:10px}
+.vid-bar{height:8px;background:var(--brand-soft);border-radius:4px;flex:1;overflow:hidden}
+.vid-bar-fill{height:100%;background:var(--brand);border-radius:4px}
+.vid-bar-fill.gold{background:var(--gold)}
+.vid-ctr{font-family:'Inter',sans-serif;font-weight:900;font-size:18px;letter-spacing:-0.02em;width:62px;text-align:right}
+.vid-num{font-family:'Inter',sans-serif;font-weight:800;font-size:17px;text-align:right;letter-spacing:-0.02em}
+
+/* INSIGHT CALLOUT */
+.callout{background:linear-gradient(135deg,#0F4D38 0%,#093225 100%);color:#fff;border-radius:14px;padding:26px 30px;display:flex;flex-direction:column;gap:10px;margin-top:18px;position:relative;overflow:hidden}
+.callout::before{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;background:radial-gradient(closest-side,rgba(184,128,31,0.25),transparent);border-radius:50%}
+.callout-tag{font-size:11px;font-weight:800;letter-spacing:0.20em;color:var(--gold);text-transform:uppercase;position:relative}
+.callout-title{font-family:'Noto Serif KR',serif;font-weight:900;font-size:24px;letter-spacing:-0.02em;position:relative}
+.callout-body{font-size:14px;line-height:1.65;color:rgba(255,255,255,0.85);position:relative}
+.callout-action{font-size:13px;color:#fff;font-weight:700;padding:8px 0 0;border-top:1px solid rgba(255,255,255,0.15);margin-top:4px;position:relative}
+.callout-action::before{content:'→ ';color:var(--gold);font-weight:900}
+
+/* HYPOTHESES */
+.hyp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.hyp-card{background:var(--panel);border:1px dashed var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px;min-height:140px}
+.hyp-id{font-family:'Noto Serif KR',serif;font-weight:900;font-size:20px;color:var(--gold);letter-spacing:0.04em}
+.hyp-text{font-size:14px;color:var(--ink);line-height:1.5;flex:1}
+.hyp-text.empty{color:var(--mute);font-style:italic}
+.hyp-status{font-size:10px;font-weight:800;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;align-self:flex-start;padding:3px 8px;border:1px solid var(--line);border-radius:99px}
+
+/* FOOTER */
+.footer{margin-top:60px;padding-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mute)}
+.footer a{color:var(--brand);text-decoration:none}
+
+/* responsive */
+@media (max-width: 900px){
+  .ns-grid{grid-template-columns:repeat(2,1fr)}
+  .hyp-grid{grid-template-columns:1fr}
+  .top-row{grid-template-columns:50px 1fr 90px;gap:10px;padding:14px 16px}
+  .top-row > .top-badge, .top-row > .top-unit{display:none}
+  .top-row.head{grid-template-columns:50px 1fr 90px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="header" id="header"></header>
+
+  <!-- 01 NORTH STAR METRICS -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-num">01</div>
+      <div class="section-title">북극성 지표 <span style="font-weight:400;color:var(--mute);font-family:'Pretendard',sans-serif;font-size:15px">· 지난 28일</span></div>
+      <div class="section-sub" id="period-display"></div>
+    </div>
+    <div class="ns-grid" id="ns-grid"></div>
+  </section>
+
+  <!-- 02 STUDIO VERDICT -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-num">02</div>
+      <div class="section-title">Studio 평가</div>
+      <div class="section-sub">YouTube 자동 코멘트</div>
+    </div>
+    <div class="verdict" id="verdict"></div>
+  </section>
+
+  <!-- 03 TOP CONTENT 48H -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-num">03</div>
+      <div class="section-title">TOP 콘텐츠 <span style="font-weight:400;color:var(--mute);font-family:'Pretendard',sans-serif;font-size:15px">· 지난 48시간</span></div>
+      <div class="section-sub" id="rt-views"></div>
+    </div>
+    <div class="top-list" id="top-list"></div>
+  </section>
+
+  <!-- 04 VIDEO REACH COMPARISON -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-num">04</div>
+      <div class="section-title">영상별 도달범위 비교</div>
+      <div class="section-sub" id="vid-note"></div>
+    </div>
+    <div class="vid-grid" id="vid-grid"></div>
+    <div class="callout" id="callout"></div>
+  </section>
+
+  <!-- 05 HYPOTHESES TRACKER -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-num">05</div>
+      <div class="section-title">다음 영상 가설 트래커</div>
+      <div class="section-sub">data.js에서 직접 편집</div>
+    </div>
+    <div class="hyp-grid" id="hyp-grid"></div>
+  </section>
+
+  <footer class="footer">
+    <div>코워크시티 · YouTube 셀프 리포트</div>
+    <div>업데이트: <span id="updated-at"></span></div>
+  </footer>
+
+</div>
+
+<script src="data.js"></script>
+<script>
+function fmt(n){
+  if (n >= 10000) return (n/10000).toFixed(n%10000===0?0:1).replace(/\.0$/,'') + '만';
+  if (n >= 1000) return n.toLocaleString();
+  return String(n);
+}
+
+function load(){
+  const data = window.REPORT_DATA;
+  // HEADER
+  document.getElementById('header').innerHTML = `
+    <div class="brand">
+      <div class="logo">${data.channel.logo_letter}</div>
+      <div class="brand-text">
+        <div class="brand-name">${data.channel.name}</div>
+        <div class="brand-sub">${data.channel.tagline}</div>
+        <a class="brand-handle" href="${data.channel.url}" target="_blank" rel="noopener">${data.channel.handle} ↗</a>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="period-chip">${data.period.label}</div>
+      <div>${data.period.from} ~ ${data.period.to}</div>
+    </div>
+  `;
+  document.getElementById('period-display').textContent = `${data.period.from} ~ ${data.period.to}`;
+
+  // NORTH STAR
+  const m = data.metrics_28d;
+  document.getElementById('ns-grid').innerHTML = `
+    <div class="ns-card hero">
+      <div class="ns-label">구독자</div>
+      <div class="ns-value">${fmt(data.channel.totals.subscribers)}</div>
+      <div class="ns-vs">현재 채널 총합</div>
+      <div class="ns-sub">영상 ${data.channel.totals.videos}개 누적</div>
+    </div>
+    <div class="ns-card">
+      <div class="ns-label">조회수</div>
+      <div class="ns-value">${m.views.display}</div>
+      <div class="ns-vs">${m.views.vs_norm}</div>
+      <div class="ns-sub">평소 범위 ${m.views.norm_range}</div>
+    </div>
+    <div class="ns-card">
+      <div class="ns-label">시청 시간</div>
+      <div class="ns-value">${m.watch_time_hours.display}</div>
+      <div class="ns-vs">${m.watch_time_hours.vs_norm}</div>
+      <div class="ns-sub">28일 누적</div>
+    </div>
+    <div class="ns-card">
+      <div class="ns-label">신규 구독자</div>
+      <div class="ns-value">${m.new_subscribers.display}</div>
+      <div class="ns-vs">${m.new_subscribers.vs_norm}</div>
+      <div class="ns-sub">28일 순증</div>
+    </div>
+  `;
+
+  // VERDICT
+  document.getElementById('verdict').innerHTML = `
+    <div class="verdict-tag">Studio 시그널</div>
+    <div class="verdict-head">"${data.studio_verdict.headline}"</div>
+    <div class="verdict-detail">${data.studio_verdict.detail}</div>
+    <div class="verdict-source">— YouTube Studio · 채널 분석 · ${data.period.label}</div>
+  `;
+
+  // TOP CONTENT
+  document.getElementById('rt-views').textContent = `실시간 48h 조회 ${data.realtime.views_48h.toLocaleString()}`;
+  const topHead = `
+    <div class="top-row head">
+      <div>#</div>
+      <div>포맷</div>
+      <div>제목</div>
+      <div style="text-align:right">조회수</div>
+      <div style="text-align:right">단위</div>
+    </div>`;
+  const topRows = data.top_content_48h.map(t => {
+    const isShort = (t.format || '').toLowerCase().includes('short');
+    return `
+      <div class="top-row">
+        <div class="top-rank">${t.rank}</div>
+        <div><span class="top-badge ${isShort?'':'long'}">${t.format}</span></div>
+        <div class="top-title">${t.title}</div>
+        <div class="top-num">${t.views_48h.toLocaleString()}</div>
+        <div class="top-unit">회</div>
+      </div>`;
+  }).join('');
+  document.getElementById('top-list').innerHTML = topHead + topRows;
+
+  // VIDEO REACH COMPARISON
+  document.getElementById('vid-note').textContent = data.video_reach.note;
+  const maxCtr = Math.max(...data.video_reach.videos.map(v => v.ctr_pct));
+  const sorted = [...data.video_reach.videos].sort((a,b) => b.ctr_pct - a.ctr_pct);
+  const vidHead = `
+    <div class="vid-row head">
+      <div>#</div>
+      <div>제목</div>
+      <div style="text-align:right">길이</div>
+      <div>CTR</div>
+      <div style="text-align:right">노출수</div>
+      <div style="text-align:right">조회수</div>
+    </div>`;
+  const vidRows = sorted.map((v, i) => {
+    const pct = (v.ctr_pct / maxCtr) * 100;
+    const isGold = v.highlight && i < 2;
+    return `
+      <div class="vid-row ${isGold?'gold':''}">
+        <div class="vid-rank ${i===0?'star':''}">${i===0?'★':i+1}</div>
+        <div class="vid-title">
+          <div class="t">${v.title}</div>
+          <div class="m">
+            <span class="tag">${v.topic_tag}</span>
+            <span>게시 후 ${v.days_since_published}일</span>
+            <span>순 시청 ${v.unique_viewers_display}</span>
+          </div>
+        </div>
+        <div class="vid-dur">${v.duration}</div>
+        <div class="vid-bar-wrap">
+          <div class="vid-bar"><div class="vid-bar-fill ${isGold?'gold':''}" style="width:${pct}%"></div></div>
+          <div class="vid-ctr">${v.ctr_pct.toFixed(1)}%</div>
+        </div>
+        <div class="vid-num">${v.impressions_display}</div>
+        <div class="vid-num">${v.views_display}</div>
+      </div>`;
+  }).join('');
+  document.getElementById('vid-grid').innerHTML = vidHead + vidRows;
+
+  // CALLOUT
+  document.getElementById('callout').innerHTML = `
+    <div class="callout-tag">Insight</div>
+    <div class="callout-title">${data.insight_callout.title}</div>
+    <div class="callout-body">${data.insight_callout.body}</div>
+    <div class="callout-action">${data.insight_callout.action}</div>
+  `;
+
+  // HYPOTHESES
+  document.getElementById('hyp-grid').innerHTML = data.hypotheses.map(h => {
+    const isEmpty = h.text.includes('(') && h.text.includes(')');
+    return `
+      <div class="hyp-card">
+        <div class="hyp-id">${h.id}</div>
+        <div class="hyp-text ${isEmpty?'empty':''}">${h.text}</div>
+        <div class="hyp-status">${h.status}</div>
+      </div>`;
+  }).join('');
+
+  // FOOTER
+  document.getElementById('updated-at').textContent = data.updated_at;
+}
+load();
+</script>
+
+</body>
+</html>
