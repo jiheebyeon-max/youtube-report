@@ -4,3 +4,6 @@ Thumbs.db
 preview*.png
 *.zip
 .vercel
+.env
+.env.local
+logs/

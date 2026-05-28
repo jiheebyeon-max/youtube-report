@@ -42,20 +42,8 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
 .period-chip{background:var(--brand);color:#fff;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:0.06em}
 
 /* PERIOD TABS */
-.period-tabs{display:flex;gap:6px;padding:8px;background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:36px;flex-wrap:wrap;align-items:center}
-.ptab{position:relative;padding:10px 18px;border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:700;color:var(--mute);border-radius:8px;cursor:pointer;letter-spacing:-0.01em;transition:background .12s, color .12s}
-.ptab:hover{background:var(--bg);color:var(--ink)}
-.ptab.active{background:var(--brand);color:#fff}
-.ptab.active:hover{background:var(--brand-deep);color:#fff}
-.ptab .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);margin-left:6px;vertical-align:1px}
-.ptab.no-data .dot{background:#D1CBB7}
-.ptab.no-data{color:#B5B0A2}
-.ptab.no-data.active{background:#5A6E62;color:#fff}
-.ptab-sep{flex:1}
-.ptab.ptab-custom{border:1px dashed var(--line)}
-.ptab.ptab-custom.active{border-color:var(--brand);background:var(--brand);color:#fff}
-.custom-row{display:none;gap:10px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:-24px 0 36px;align-items:center;flex-wrap:wrap}
-.custom-row.open{display:flex}
+.custom-row{display:flex;gap:10px;padding:14px 18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:36px;align-items:center;flex-wrap:wrap}
+.custom-row .range-label{font-family:'Noto Serif KR',serif;font-weight:900;font-size:15px;letter-spacing:-0.02em;color:var(--ink);margin-right:6px}
 .custom-row label{font-size:12px;color:var(--mute);font-weight:700;letter-spacing:0.06em;text-transform:uppercase}
 .custom-row input[type=date]{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
 .custom-row button{font:inherit;font-size:13px;font-weight:700;padding:9px 18px;background:var(--brand);color:#fff;border:none;border-radius:8px;cursor:pointer}
@@ -84,37 +72,6 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
 .ns-vs::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
 .ns-sub{font-size:11px;color:#999;letter-spacing:0.02em;margin-top:4px}
 
-/* VERDICT */
-.verdict{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:14px;padding:24px 28px;display:flex;flex-direction:column;gap:8px}
-.verdict.empty{border-left-color:#D1CBB7;background:repeating-linear-gradient(135deg,#fff 0 12px,#FBF7EC 12px 24px)}
-.verdict-tag{font-size:11px;font-weight:700;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
-.verdict.empty .verdict-tag{color:#B5B0A2}
-.verdict-head{font-family:'Noto Serif KR',serif;font-weight:900;font-size:28px;letter-spacing:-0.02em}
-.verdict.empty .verdict-head{color:#B5B0A2;font-size:22px}
-.verdict-detail{font-size:15px;color:var(--mute);line-height:1.6}
-.verdict-source{margin-top:6px;font-size:11px;color:#999;letter-spacing:0.08em}
-
-/* TOP CONTENT — split shorts vs long */
-.top-split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.top-col{display:flex;flex-direction:column;gap:10px}
-.top-col-head{display:flex;align-items:baseline;gap:10px;padding:0 4px}
-.top-col-head .ic{width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900}
-.top-col-head .ic.short{background:var(--neg)}
-.top-col-head .ic.long{background:#2B5273}
-.top-col-head .ttl{font-family:'Noto Serif KR',serif;font-weight:900;font-size:18px;letter-spacing:-0.02em}
-.top-col-head .sub{font-size:11px;color:var(--mute);letter-spacing:0.10em;text-transform:uppercase;font-weight:700;margin-left:auto}
-.top-list{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;flex:1}
-.top-row{display:grid;grid-template-columns:36px 1fr 90px;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line)}
-.top-row:last-child{border-bottom:none}
-.top-row.placeholder{display:block;padding:24px 22px;color:var(--mute);font-size:13px;text-align:center;line-height:1.7;background:#FBF7EC}
-.top-row.placeholder strong{color:var(--ink);font-weight:700}
-.top-rank{font-family:'Noto Serif KR',serif;font-weight:900;font-size:24px;color:var(--brand);line-height:1;text-align:center}
-.top-rank.star{color:var(--gold)}
-.top-title{display:flex;flex-direction:column;gap:3px;min-width:0}
-.top-title .t{font-size:14px;font-weight:600;letter-spacing:-0.01em;line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.top-title .m{font-size:10px;color:var(--mute);letter-spacing:0.06em;text-transform:uppercase;font-weight:700}
-.top-num{font-family:'Inter',sans-serif;font-weight:900;font-size:18px;text-align:right;letter-spacing:-0.02em;line-height:1.2}
-.top-num .u{font-size:10px;color:var(--mute);font-weight:600;letter-spacing:0.08em;display:block}
 
 /* VIDEO REACH COMPARISON */
 .vid-grid{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
@@ -145,26 +102,133 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
 .callout-action{font-size:13px;color:#fff;font-weight:700;padding:8px 0 0;border-top:1px solid rgba(255,255,255,0.15);margin-top:4px;position:relative}
 .callout-action::before{content:'→ ';color:var(--gold);font-weight:900}
 
-/* HYPOTHESES */
-.hyp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.hyp-card{background:var(--panel);border:1px dashed var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px;min-height:140px}
-.hyp-id{font-family:'Noto Serif KR',serif;font-weight:900;font-size:20px;color:var(--gold);letter-spacing:0.04em}
-.hyp-text{font-size:14px;color:var(--ink);line-height:1.5;flex:1}
-.hyp-text.empty{color:var(--mute);font-style:italic}
-.hyp-status{font-size:10px;font-weight:800;letter-spacing:0.18em;color:var(--mute);text-transform:uppercase;align-self:flex-start;padding:3px 8px;border:1px solid var(--line);border-radius:99px}
 
 /* FOOTER */
 .footer{margin-top:60px;padding-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mute)}
 .footer a{color:var(--brand);text-decoration:none}
 
+/* PROMO CONVERSION (CWYT26) */
+.promo-chart-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-top:14px}
+.promo-chart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.promo-chart-title{font-size:11px;font-weight:700;color:var(--mute);letter-spacing:0.14em;text-transform:uppercase}
+.promo-chart-legend{display:flex;gap:14px;font-size:11px;color:var(--mute);font-weight:600}
+.promo-chart-legend .lg{display:inline-flex;align-items:center;gap:6px}
+.promo-chart-legend .sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+.promo-svg{width:100%;height:220px;display:block}
+.promo-svg .bar-c{fill:var(--brand)}
+.promo-svg .bar-p{fill:var(--gold);opacity:0.95}
+.promo-svg .axis{stroke:var(--line);stroke-width:1}
+.promo-svg .tick{font-family:'Inter',sans-serif;font-size:9px;fill:var(--mute)}
+.promo-svg .grid{stroke:var(--line);stroke-width:1;stroke-dasharray:2 3;opacity:0.5}
+.promo-meta{display:flex;gap:18px;align-items:center;font-size:12px;color:var(--mute);margin-top:8px;flex-wrap:wrap}
+.promo-meta .badge{background:var(--brand-soft);color:var(--brand);padding:3px 10px;border-radius:99px;font-weight:700;font-size:11px;letter-spacing:0.04em}
+
+/* 누적 (전체 기간) 박스 */
+.cumul-card{background:var(--brand);color:#fff;border-radius:14px;padding:24px 28px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.cumul-tag{font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;opacity:0.7;margin-bottom:6px}
+.cumul-stats{display:flex;gap:36px;align-items:baseline;flex-wrap:wrap}
+.cumul-stat{display:flex;flex-direction:column;gap:2px}
+.cumul-stat-label{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;opacity:0.75}
+.cumul-stat-value{font-family:'Inter',sans-serif;font-weight:900;font-size:42px;letter-spacing:-0.04em;line-height:1}
+.cumul-stat-value .u{font-size:18px;font-weight:700;margin-left:4px;opacity:0.8}
+.cumul-meta{font-size:12px;opacity:0.75;line-height:1.6;text-align:right}
+.cumul-meta .v{font-weight:800;opacity:1}
+
+/* MoM 변동률 배지 */
+.mom-badge{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--brand);border-radius:14px;padding:20px 24px;margin-bottom:14px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.mom-badge.down{border-left-color:var(--neg)}
+.mom-badge.flat{border-left-color:var(--mute)}
+.mom-head{display:flex;align-items:center;gap:14px}
+.mom-arrow{font-family:'Inter',sans-serif;font-weight:900;font-size:34px;line-height:1;color:var(--brand)}
+.mom-badge.down .mom-arrow{color:var(--neg)}
+.mom-badge.flat .mom-arrow{color:var(--mute)}
+.mom-stack{display:flex;flex-direction:column;gap:2px}
+.mom-label{font-size:10px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--mute)}
+.mom-pct{font-family:'Inter',sans-serif;font-weight:900;font-size:30px;letter-spacing:-0.03em;line-height:1;color:var(--brand)}
+.mom-badge.down .mom-pct{color:var(--neg)}
+.mom-badge.flat .mom-pct{color:var(--mute)}
+.mom-detail{font-size:13px;color:var(--ink);line-height:1.6}
+.mom-detail .v{font-weight:800;font-family:'Inter',sans-serif}
+.mom-detail .lbl{color:var(--mute);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-right:4px}
+.mom-detail-row + .mom-detail-row{margin-top:2px}
+
+/* LIVE CHANNEL STATS (API) */
+.live-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.live-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 26px;display:flex;flex-direction:column;gap:18px}
+.live-head{display:flex;align-items:center;gap:14px}
+.live-thumb{width:56px;height:56px;border-radius:50%;background:#eee;object-fit:cover;flex-shrink:0}
+.live-meta{flex:1;min-width:0}
+.live-title{font-family:'Noto Serif KR',serif;font-weight:900;font-size:18px;letter-spacing:-0.02em;line-height:1.3;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.live-handle{font-size:12px;color:var(--mute);font-family:'Inter',sans-serif}
+.live-handle a{color:var(--brand);text-decoration:none}
+.live-handle a:hover{text-decoration:underline}
+.live-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.live-stat-label{font-size:10px;color:var(--mute);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.live-stat-value{font-family:'Inter','Pretendard',sans-serif;font-weight:900;font-size:24px;letter-spacing:-0.03em;color:var(--ink)}
+.live-sort{display:flex;gap:6px;padding:2px;background:var(--bg);border:1px solid var(--line);border-radius:99px;width:fit-content;align-self:flex-end}
+.live-sort-btn{font-family:'Pretendard',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.04em;padding:6px 14px;border:none;background:transparent;color:var(--mute);border-radius:99px;cursor:pointer;transition:all 0.15s}
+.live-sort-btn:hover{color:var(--ink)}
+.live-sort-btn.active{background:var(--brand);color:#fff}
+.live-section{display:flex;flex-direction:column;gap:2px}
+.live-section + .live-section{margin-top:6px}
+.live-section-head{font-size:11px;color:var(--mute);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.live-count{background:var(--brand-soft);color:var(--brand);padding:1px 8px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:0.02em}
+.live-vid{display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px;align-items:center}
+.live-vid:last-child{border-bottom:none}
+.live-vid-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink)}
+.live-vid-title a{color:inherit;text-decoration:none}
+.live-vid-title a:hover{color:var(--brand)}
+.live-vid-stats{font-family:'Inter',sans-serif;font-size:11px;color:var(--mute);white-space:nowrap}
+.live-vid-stats .v{color:var(--ink);font-weight:700}
+.live-empty-inline{font-size:12px;color:#B5B0A2;padding:8px 0;font-style:italic}
+.live-fetched{font-size:11px;color:var(--mute);letter-spacing:0.04em;font-family:'Inter',sans-serif}
+.live-empty{grid-column:1/-1;background:repeating-linear-gradient(135deg,#fff 0 12px,#FBF7EC 12px 24px);border:1px dashed var(--line);border-radius:14px;padding:32px;text-align:center;color:#B5B0A2;font-size:14px}
+
+/* AI 추천 · 창업 핫토픽 */
+.ai-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.ai-kw-bar{display:flex;gap:8px;padding:14px 20px;border-bottom:1px solid var(--line);background:#FBF7EC;flex-wrap:wrap;align-items:center;font-size:12px}
+.ai-kw-bar .lbl{color:var(--mute);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-right:6px}
+.ai-kw-bar .kw{background:var(--brand-soft);color:var(--brand);padding:3px 10px;border-radius:99px;font-weight:700;font-size:11px}
+.ai-vid-row{display:grid;grid-template-columns:36px 90px 1fr 110px;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.ai-vid-row:last-child{border-bottom:none}
+.ai-vid-row:hover{background:#FBF7EC}
+.ai-vid-rank{font-family:'Noto Serif KR',serif;font-weight:900;font-size:22px;color:var(--brand);line-height:1;text-align:center}
+.ai-vid-rank.star{color:var(--gold)}
+.ai-vid-thumb{width:90px;height:50px;border-radius:6px;object-fit:cover;background:#eee}
+.ai-vid-body{min-width:0;display:flex;flex-direction:column;gap:4px}
+.ai-vid-title{font-size:14px;font-weight:700;letter-spacing:-0.01em;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ai-vid-title a{color:inherit;text-decoration:none}
+.ai-vid-title a:hover{color:var(--brand)}
+.ai-vid-meta{font-size:11px;color:var(--mute);display:flex;gap:8px;flex-wrap:wrap}
+.ai-vid-meta .ch{color:var(--ink);font-weight:600}
+.ai-vid-meta .tag{background:var(--bg);color:var(--mute);padding:1px 6px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:0.04em}
+.ai-vid-views{font-family:'Inter',sans-serif;font-weight:900;font-size:16px;text-align:right;letter-spacing:-0.02em;line-height:1.2}
+.ai-vid-views .u{font-size:10px;color:var(--mute);font-weight:600;letter-spacing:0.08em;display:block}
+
+/* UTM 유입 카드 */
+.utm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.utm-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:8px}
+.utm-card.hero{background:var(--brand-deep);color:#fff;border-color:var(--brand-deep)}
+.utm-card.hero .utm-label,.utm-card.hero .utm-sub{color:rgba(255,255,255,0.7)}
+.utm-label{font-size:11px;color:var(--mute);letter-spacing:0.18em;text-transform:uppercase;font-weight:700}
+.utm-value{font-family:'Inter','Pretendard',sans-serif;font-weight:900;font-size:42px;letter-spacing:-0.04em;line-height:1;color:var(--ink)}
+.utm-card.hero .utm-value{color:#fff}
+.utm-value .u{font-size:14px;font-weight:700;margin-left:4px;opacity:0.7}
+.utm-sub{font-size:11px;color:#999;letter-spacing:0.02em}
+.utm-note{margin-top:14px;padding:12px 16px;background:#FBF7EC;border-radius:10px;font-size:12px;color:var(--mute);line-height:1.6}
+.utm-note .v{color:var(--ink);font-weight:700}
+@media (max-width: 900px){
+  .utm-grid{grid-template-columns:repeat(2,1fr)}
+}
+
 /* responsive */
 @media (max-width: 900px){
   .ns-grid{grid-template-columns:repeat(2,1fr)}
-  .hyp-grid{grid-template-columns:1fr}
-  .top-split{grid-template-columns:1fr;gap:24px}
   .vid-row{grid-template-columns:30px 1fr 70px 110px;gap:10px;padding:14px 16px}
   .vid-row > .vid-num{display:none}
   .vid-row.head{grid-template-columns:30px 1fr 70px 110px}
+  .promo-svg{height:180px}
+  .live-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -174,84 +238,72 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
   <!-- HEADER -->
   <header class="header" id="header"></header>
 
-  <!-- PERIOD TABS -->
-  <nav class="period-tabs" id="period-tabs"></nav>
+  <!-- DATE RANGE PICKER -->
   <div class="custom-row" id="custom-row">
+    <span class="range-label">📅 기간</span>
     <label>FROM</label>
     <input type="date" id="cd-from">
     <label>TO</label>
     <input type="date" id="cd-to">
     <button id="cd-apply">적용</button>
-    <span class="hint">기간 선택 후 적용 — 해당 기간 Studio 스샷이 들어오면 자동 반영</span>
+    <span class="hint">CWYT26 차트 + Studio 평가가 선택한 기간으로 좁혀집니다</span>
   </div>
 
-  <!-- 01 NORTH STAR METRICS -->
+  <!-- 01 YOUTUBE 할인 코드 사용량 (CWYT26) -->
   <section class="section">
     <div class="section-head">
       <div class="section-num">01</div>
-      <div class="section-title">북극성 지표 <span id="ns-period-label" style="font-weight:400;color:var(--mute);font-family:'Pretendard',sans-serif;font-size:15px"></span></div>
-      <div class="section-sub" id="period-display"></div>
+      <div class="section-title">유튜브 할인 코드 사용량 <span style="font-weight:400;color:var(--mute);font-family:'Pretendard',sans-serif;font-size:15px">· CWYT26</span></div>
+      <div class="section-sub" id="promo-period-label"></div>
     </div>
-    <div class="ns-grid" id="ns-grid"></div>
+    <div class="cumul-card" id="cumul-card" style="display:none"></div>
+    <div class="mom-badge" id="mom-badge" style="display:none"></div>
+    <div class="ns-grid" id="promo-grid"></div>
+    <div class="callout" id="promo-callout" style="margin-top:14px"></div>
   </section>
 
-  <!-- 02 STUDIO VERDICT -->
+  <!-- 02 LIVE CHANNEL STATS (API) -->
   <section class="section">
     <div class="section-head">
       <div class="section-num">02</div>
-      <div class="section-title">Studio 평가</div>
-      <div class="section-sub">YouTube 자동 코멘트</div>
+      <div class="section-title">채널 라이브 수집 <span style="font-weight:400;color:var(--mute);font-family:'Pretendard',sans-serif;font-size:15px">· YouTube Data API</span></div>
+      <div class="section-sub">매일 10/12/14/16/18시 자동 갱신 · 마지막: <span id="yt-fetched-at" class="live-fetched">—</span></div>
     </div>
-    <div id="verdict-wrap"></div>
+    <div class="live-grid" id="live-grid"></div>
   </section>
 
-  <!-- 03 TOP CONTENT — split shorts vs long -->
+  <!-- 03 VIDEO REACH COMPARISON -->
   <section class="section">
     <div class="section-head">
       <div class="section-num">03</div>
-      <div class="section-title">TOP 콘텐츠</div>
-      <div class="section-sub" id="rt-views"></div>
-    </div>
-    <div class="top-split">
-      <div class="top-col">
-        <div class="top-col-head">
-          <span class="ic short">S</span>
-          <span class="ttl">TOP 쇼츠</span>
-          <span class="sub">지난 48시간</span>
-        </div>
-        <div class="top-list" id="top-shorts"></div>
-      </div>
-      <div class="top-col">
-        <div class="top-col-head">
-          <span class="ic long">▶</span>
-          <span class="ttl">TOP 일반 영상</span>
-          <span class="sub">누적 조회</span>
-        </div>
-        <div class="top-list" id="top-longs"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 VIDEO REACH COMPARISON -->
-  <section class="section">
-    <div class="section-head">
-      <div class="section-num">04</div>
-      <div class="section-title">영상별 도달범위 비교</div>
+      <div class="section-title">CTR TOP 5</div>
       <div class="section-sub" id="vid-note"></div>
     </div>
     <div class="vid-grid" id="vid-grid"></div>
     <div class="callout" id="callout"></div>
   </section>
 
-  <!-- 05 HYPOTHESES TRACKER -->
+  <!-- 04 유튜브 → 홈페이지 UTM 유입 -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-num">04</div>
+      <div class="section-title">🌐 유튜브 → 홈페이지 유입</div>
+      <div class="section-sub">Amplitude · gp:initial_utm_source = "youtube" · <span id="utm-fetched-at">—</span></div>
+    </div>
+    <div class="utm-grid" id="utm-grid"></div>
+    <div class="utm-note" id="utm-note"></div>
+  </section>
+
+  <!-- 05 AI 추천 · 창업 핫토픽 -->
   <section class="section">
     <div class="section-head">
       <div class="section-num">05</div>
-      <div class="section-title">다음 영상 가설 트래커</div>
-      <div class="section-sub">data.js에서 직접 편집</div>
+      <div class="section-title">🔥 AI 추천 · 오늘의 창업 콘텐츠</div>
+      <div class="section-sub">키워드 검색 자동 큐레이션 · <span id="ai-fetched-at">—</span></div>
     </div>
-    <div class="hyp-grid" id="hyp-grid"></div>
+    <div class="ai-card" id="ai-card"></div>
   </section>
+
 
   <footer class="footer">
     <div>코워크시티 · YouTube 셀프 리포트</div>
@@ -261,10 +313,31 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
 </div>
 
 <script src="data.js"></script>
+<script src="promo-data.js"></script>
+<script src="youtube-data.js"></script>
+<script src="utm-data.js"></script>
 <script>
 const data = window.REPORT_DATA;
-const PERIOD_ORDER = ["d7","d28","d90","d365","ltm","custom"];
-let currentKey = data.current_period || "d28";
+const currentKey = "custom"; // 항상 사용자 지정 기간 모드
+
+// 초기 디폴트 기간: 오늘 기준 지난 28일
+(function initDefaultRange(){
+  const today = new Date();
+  const from = new Date(today);
+  from.setDate(today.getDate() - 27);
+  const toIso = today.toISOString().slice(0,10);
+  const fromIso = from.toISOString().slice(0,10);
+  // data.periods.custom이 비어있으면 디폴트 채움
+  if (!data.periods.custom.from || !data.periods.custom.to){
+    data.periods.custom.from = fromIso;
+    data.periods.custom.to = toIso;
+  }
+})();
+
+function fmtDate(d){
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
 
 function fmt(n){
   if (n >= 10000) return (n/10000).toFixed(n%10000===0?0:1).replace(/\.0$/,'') + '만';
@@ -289,165 +362,17 @@ function renderHeader(){
 
 function renderHeaderRight(){
   const p = data.periods[currentKey];
-  const range = (p.from && p.to) ? `${p.from} ~ ${p.to}` : '기간 데이터 미입력';
+  const range = (p.from && p.to) ? `${p.from} ~ ${p.to}` : '기간 미설정';
   document.getElementById('header-right').innerHTML = `
-    <div class="period-chip">${p.label}</div>
+    <div class="period-chip">📅 기간</div>
     <div>${range}</div>
   `;
 }
 
-function renderTabs(){
-  const tabs = PERIOD_ORDER.map(key => {
-    const p = data.periods[key];
-    const hasData = !!p.data;
-    const active = key === currentKey;
-    const cls = `ptab ${active?'active':''} ${hasData?'':'no-data'} ${key==='custom'?'ptab-custom':''}`;
-    const label = (key==='custom' && p.from && p.to) ? `${p.from} ~ ${p.to}` : p.label;
-    const icon = key==='custom' ? '📅 ' : '';
-    return `<button class="${cls}" data-key="${key}">${icon}${label}<span class="dot"></span></button>`;
-  });
-  document.getElementById('period-tabs').innerHTML =
-    tabs.slice(0,5).join('') +
-    `<div class="ptab-sep"></div>` +
-    tabs[5];
-
-  document.querySelectorAll('.ptab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const k = btn.getAttribute('data-key');
-      currentKey = k;
-      if (k === 'custom') {
-        document.getElementById('custom-row').classList.add('open');
-      } else {
-        document.getElementById('custom-row').classList.remove('open');
-      }
-      renderAll();
-    });
-  });
-}
-
-function renderMetrics(){
+function syncDateInputs(){
   const p = data.periods[currentKey];
-  document.getElementById('ns-period-label').textContent = `· ${p.label}`;
-  document.getElementById('period-display').textContent =
-    (p.from && p.to) ? `${p.from} ~ ${p.to}` : '데이터 미입력 기간';
-
-  const heroSubs = `
-    <div class="ns-card hero">
-      <div class="ns-label">구독자</div>
-      <div class="ns-value">${fmt(data.channel.totals.subscribers)}</div>
-      <div class="ns-vs">현재 채널 총합</div>
-      <div class="ns-sub">영상 ${data.channel.totals.videos}개 누적</div>
-    </div>`;
-
-  if (!p.data) {
-    document.getElementById('ns-grid').innerHTML = heroSubs + `
-      <div class="ns-card empty">
-        <div class="ns-label">조회수</div>
-        <div class="ns-value">—</div>
-        <div class="ns-vs">${p.label} 스샷 필요</div>
-        <div class="ns-sub">YouTube Studio → 채널 분석 → ${p.label} 선택 후 캡처</div>
-      </div>
-      <div class="ns-card empty">
-        <div class="ns-label">시청 시간</div>
-        <div class="ns-value">—</div>
-        <div class="ns-vs">${p.label} 스샷 필요</div>
-        <div class="ns-sub">기본 위젯 두 번째 카드</div>
-      </div>
-      <div class="ns-card empty">
-        <div class="ns-label">신규 구독자</div>
-        <div class="ns-value">—</div>
-        <div class="ns-vs">${p.label} 스샷 필요</div>
-        <div class="ns-sub">기본 위젯 세 번째 카드</div>
-      </div>
-    `;
-    return;
-  }
-
-  const m = p.data;
-  document.getElementById('ns-grid').innerHTML = heroSubs + `
-    <div class="ns-card">
-      <div class="ns-label">조회수</div>
-      <div class="ns-value">${m.views.display}</div>
-      <div class="ns-vs">${m.views.vs_norm}</div>
-      <div class="ns-sub">${m.views.norm_range?`평소 범위 ${m.views.norm_range}`:p.label+' 누적'}</div>
-    </div>
-    <div class="ns-card">
-      <div class="ns-label">시청 시간</div>
-      <div class="ns-value">${m.watch_time_hours.display}</div>
-      <div class="ns-vs">${m.watch_time_hours.vs_norm}</div>
-      <div class="ns-sub">${p.label} 누적</div>
-    </div>
-    <div class="ns-card">
-      <div class="ns-label">신규 구독자</div>
-      <div class="ns-value">${m.new_subscribers.display}</div>
-      <div class="ns-vs">${m.new_subscribers.vs_norm}</div>
-      <div class="ns-sub">${p.label} 순증</div>
-    </div>
-  `;
-}
-
-function renderVerdict(){
-  const p = data.periods[currentKey];
-  const v = p.verdict;
-  if (!v) {
-    document.getElementById('verdict-wrap').innerHTML = `
-      <div class="verdict empty">
-        <div class="verdict-tag">Studio 시그널</div>
-        <div class="verdict-head">${p.label} 데이터 미입력</div>
-        <div class="verdict-detail">YouTube Studio에서 ${p.label} 기간 선택 후 채널 분석 개요 화면 스샷을 보내주시면 자동으로 채워집니다.</div>
-      </div>`;
-    return;
-  }
-  document.getElementById('verdict-wrap').innerHTML = `
-    <div class="verdict">
-      <div class="verdict-tag">Studio 시그널</div>
-      <div class="verdict-head">"${v.headline}"</div>
-      <div class="verdict-detail">${v.detail}</div>
-      <div class="verdict-source">— YouTube Studio · 채널 분석 · ${p.label}</div>
-    </div>`;
-}
-
-function renderTopContent(){
-  document.getElementById('rt-views').textContent = `누적 조회수 기준 · 실시간 48h 채널 조회 ${data.realtime.views_48h.toLocaleString()}`;
-
-  // TOP SHORTS — 누적 조회수
-  const sv = data.top_shorts.videos;
-  if (!sv || sv.length === 0) {
-    document.getElementById('top-shorts').innerHTML = `
-      <div class="top-row placeholder" style="padding:40px 22px;text-align:center">
-        <strong>쇼츠 누적 조회수 미입력</strong><br><br>
-        YouTube Studio 좌측 메뉴 <strong>[콘텐츠]</strong> 클릭 → 영상 표 한 장이면<br>
-        쇼츠·일반 영상 27개 누적 조회수가 한 번에 채워집니다.
-      </div>`;
-  } else {
-    const sortedShorts = [...sv].sort((a,b) => b.views_cumulative - a.views_cumulative);
-    document.getElementById('top-shorts').innerHTML = sortedShorts.map((s, i) => `
-      <div class="top-row">
-        <div class="top-rank ${i===0?'star':''}">${i===0?'★':i+1}</div>
-        <div class="top-title">
-          <div class="t">${s.title}</div>
-          <div class="m">SHORTS · 게시 후 ${s.published_days_ago}일</div>
-        </div>
-        <div class="top-num">${s.views_display}<span class="u">회 (누적)</span></div>
-      </div>`).join('');
-  }
-
-  // TOP LONG — 영상별 도달범위에서 누적 조회수 기준 정렬
-  const longs = [...data.video_reach.videos].sort((a,b) => b.views - a.views);
-  const longRows = longs.map((v, i) => `
-    <div class="top-row">
-      <div class="top-rank ${i===0?'star':''}">${i===0?'★':i+1}</div>
-      <div class="top-title">
-        <div class="t">${v.title}</div>
-        <div class="m">${v.duration} · 게시 후 ${v.days_since_published}일</div>
-      </div>
-      <div class="top-num">${v.views_display}<span class="u">회 (누적)</span></div>
-    </div>`).join('');
-  const longFooter = `
-    <div class="top-row placeholder">
-      현재 ${longs.length}개 영상 표시. <strong>콘텐츠 탭 리스트</strong>로 전체 ${data.channel.totals.videos}개 확장 가능.
-    </div>`;
-  document.getElementById('top-longs').innerHTML = longRows + longFooter;
+  if (p.from) document.getElementById('cd-from').value = p.from;
+  if (p.to)   document.getElementById('cd-to').value = p.to;
 }
 
 function renderVideoReach(){
@@ -495,16 +420,7 @@ function renderVideoReach(){
   `;
 }
 
-function renderHypotheses(){
-  document.getElementById('hyp-grid').innerHTML = data.hypotheses.map(h => {
-    const isEmpty = h.text.includes('(') && h.text.includes(')');
-    return `
-      <div class="hyp-card">
-        <div class="hyp-id">${h.id}</div>
-        <div class="hyp-text ${isEmpty?'empty':''}">${h.text}</div>
-        <div class="hyp-status">${h.status}</div>
-      </div>`;
-  }).join('');
+function renderUpdatedAt(){
   document.getElementById('updated-at').textContent = data.updated_at;
 }
 
@@ -521,22 +437,487 @@ function applyCustom(){
   }
   data.periods.custom.from = from;
   data.periods.custom.to = to;
-  currentKey = 'custom';
   renderAll();
+}
+
+// ===== PROMO CODE (CWYT26) =====
+function getPromoRange(){
+  if (!window.PROMO_CWYT26) return null;
+  const p = data.periods[currentKey];
+  if (p.from && p.to) return { from: p.from, to: p.to };
+  return null;
+}
+
+function renderPromo(){
+  const promo = window.PROMO_CWYT26;
+  const labelEl = document.getElementById('promo-period-label');
+  const gridEl = document.getElementById('promo-grid');
+  const calloutEl = document.getElementById('promo-callout');
+
+  if (!promo) {
+    labelEl.textContent = 'promo-data.js 미생성';
+    gridEl.innerHTML = `<div class="ns-card empty" style="grid-column:1/-1">
+      <div class="ns-label">CWYT26</div>
+      <div class="ns-value">—</div>
+      <div class="ns-vs">데이터 없음</div>
+      <div class="ns-sub">./refresh-promo.ps1 실행하면 채워집니다</div>
+    </div>`;
+    calloutEl.style.display = 'none';
+    return;
+  }
+
+  const range = getPromoRange();
+  if (!range) {
+    labelEl.textContent = '기간 미설정';
+    gridEl.innerHTML = `<div class="ns-card empty" style="grid-column:1/-1">
+      <div class="ns-label">CWYT26</div>
+      <div class="ns-value">—</div>
+      <div class="ns-vs">상단 기간 미설정</div>
+      <div class="ns-sub">FROM/TO 달력 입력</div>
+    </div>`;
+    calloutEl.style.display = 'none';
+    return;
+  }
+
+  const rows = promo.daily.filter(d => d.day >= range.from && d.day <= range.to);
+  const c = rows.reduce((s,r) => s + r.contracts, 0);
+  const p = rows.reduce((s,r) => s + r.paid, 0);
+  const days = Math.round((new Date(range.to+'T00:00:00') - new Date(range.from+'T00:00:00'))/86400000) + 1;
+  const avg = (c/days).toFixed(2);
+
+  labelEl.textContent = `${range.from} ~ ${range.to} · 누적 ${promo.total.contracts}건 (전체)`;
+
+  gridEl.innerHTML = `
+    <div class="ns-card hero" style="background:var(--gold);border-color:var(--gold)">
+      <div class="ns-label">계약 (선택 기간)</div>
+      <div class="ns-value">${c}</div>
+      <div class="ns-vs">코드 입력 → 신청</div>
+      <div class="ns-sub">전체 누적 ${promo.total.contracts}건 중 ${days}일치</div>
+    </div>
+    <div class="ns-card">
+      <div class="ns-label">첫 결제 완료</div>
+      <div class="ns-value">${p}</div>
+      <div class="ns-vs">실제 매출 발생</div>
+      <div class="ns-sub">전체 누적 ${promo.total.paid}건</div>
+    </div>
+    <div class="ns-card">
+      <div class="ns-label">일평균</div>
+      <div class="ns-value">${avg}</div>
+      <div class="ns-vs">건/일</div>
+      <div class="ns-sub">${days}일 평균</div>
+    </div>
+  `;
+
+  renderCumulativeCard(promo);
+  renderMoMBadge(promo);
+  renderPromoCallout(promo, range, rows);
+}
+
+function renderCumulativeCard(promo){
+  const el = document.getElementById('cumul-card');
+  const total = promo.total || { contracts: 0, paid: 0 };
+  const rate = total.contracts ? Math.round((total.paid / total.contracts) * 100) : 0;
+  const days = (promo.daily || []).map(d => d.day).sort();
+  const firstDay = days[0] || null;
+  const lastDay  = days[days.length - 1] || null;
+  const spanDays = (firstDay && lastDay)
+    ? Math.round((new Date(lastDay+'T00:00:00') - new Date(firstDay+'T00:00:00'))/86400000) + 1
+    : 0;
+
+  el.style.display = 'flex';
+  el.innerHTML = `
+    <div>
+      <div class="cumul-tag">누적 · 전체 기간</div>
+      <div class="cumul-stats">
+        <div class="cumul-stat">
+          <div class="cumul-stat-label">계약</div>
+          <div class="cumul-stat-value">${total.contracts}<span class="u">건</span></div>
+        </div>
+        <div class="cumul-stat">
+          <div class="cumul-stat-label">결제</div>
+          <div class="cumul-stat-value">${total.paid}<span class="u">건</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cumul-meta">
+      ${firstDay ? `첫 사용 <span class="v">${firstDay}</span><br>최근 사용 <span class="v">${lastDay}</span><br><span style="opacity:0.7">사용 기간 ${spanDays}일</span>` : '데이터 없음'}
+    </div>
+  `;
+}
+
+// 지난달 대비 = 이번달 1일~오늘 vs 지난달 1일~지난달 같은 날짜
+function computeMoM(daily){
+  const today = new Date();
+  const Y = today.getFullYear(), M = today.getMonth(), D = today.getDate();
+
+  const tmFrom = new Date(Y, M, 1);
+  const tmTo   = today;
+
+  const lmFrom = new Date(Y, M - 1, 1);
+  const lmLastDay = new Date(Y, M, 0).getDate(); // 지난달 말일 수
+  const lmTo   = new Date(Y, M - 1, Math.min(D, lmLastDay));
+
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const inRange = (day, from, to) => day >= iso(from) && day <= iso(to);
+
+  const tmRows = daily.filter(r => inRange(r.day, tmFrom, tmTo));
+  const lmRows = daily.filter(r => inRange(r.day, lmFrom, lmTo));
+
+  const sum = (arr, k) => arr.reduce((s,r) => s + Number(r[k] || 0), 0);
+
+  const tm = { contracts: sum(tmRows, 'contracts'), paid: sum(tmRows, 'paid') };
+  const lm = { contracts: sum(lmRows, 'contracts'), paid: sum(lmRows, 'paid') };
+
+  const pctOf = (curr, prev) => {
+    if (prev === 0) return curr > 0 ? null : 0; // null = 신규 (지난달 0건)
+    return Math.round((curr - prev) / prev * 100);
+  };
+
+  return {
+    tm, lm,
+    tmLabel: `${M+1}월 1~${D}일`,
+    lmLabel: `${M === 0 ? 12 : M}월 1~${Math.min(D, lmLastDay)}일`,
+    contractsPct: pctOf(tm.contracts, lm.contracts),
+    paidPct: pctOf(tm.paid, lm.paid)
+  };
+}
+
+function renderMoMBadge(promo){
+  const el = document.getElementById('mom-badge');
+  const m = computeMoM(promo.daily);
+
+  // 방향성은 계약 기준
+  const pct = m.contractsPct;
+  let dir, arrow, pctText;
+  if (pct === null) { dir = 'up'; arrow = '↑'; pctText = '신규'; }
+  else if (pct > 0) { dir = 'up'; arrow = '↑'; pctText = `+${pct}%`; }
+  else if (pct < 0) { dir = 'down'; arrow = '↓'; pctText = `${pct}%`; }
+  else              { dir = 'flat'; arrow = '→'; pctText = '±0%'; }
+
+  const paidPctText = m.paidPct === null
+    ? '신규'
+    : (m.paidPct > 0 ? `+${m.paidPct}%` : `${m.paidPct}%`);
+
+  el.style.display = 'flex';
+  el.className = `mom-badge ${dir}`;
+  el.innerHTML = `
+    <div class="mom-head">
+      <span class="mom-arrow">${arrow}</span>
+      <div class="mom-stack">
+        <div class="mom-label">지난달 대비 · 계약</div>
+        <div class="mom-pct">${pctText}</div>
+      </div>
+    </div>
+    <div class="mom-detail" style="margin-left:auto">
+      <div class="mom-detail-row"><span class="lbl">이번달 ${m.tmLabel}</span> 계약 <span class="v">${m.tm.contracts}</span> · 결제 <span class="v">${m.tm.paid}</span></div>
+      <div class="mom-detail-row"><span class="lbl">지난달 ${m.lmLabel}</span> 계약 <span class="v">${m.lm.contracts}</span> · 결제 <span class="v">${m.lm.paid}</span></div>
+      <div class="mom-detail-row" style="margin-top:6px;color:var(--mute);font-size:11px">결제 기준 변동: <span class="v" style="color:var(--ink)">${paidPctText}</span></div>
+    </div>
+  `;
+}
+
+function renderPromoSvg(range){
+  const svg = document.getElementById('promo-svg');
+  const promo = window.PROMO_CWYT26;
+  const W = 1200, H = 220, pad = { t: 16, b: 28, l: 36, r: 12 };
+  const chartW = W - pad.l - pad.r;
+  const chartH = H - pad.t - pad.b;
+
+  const map = new Map();
+  promo.daily.forEach(d => map.set(d.day, d));
+  const days = [];
+  const cur = new Date(range.from + 'T00:00:00');
+  const end = new Date(range.to + 'T00:00:00');
+  while (cur <= end) {
+    const k = fmtDate(cur);
+    days.push(map.get(k) || { day: k, contracts: 0, paid: 0 });
+    cur.setDate(cur.getDate() + 1);
+  }
+  if (days.length === 0) { svg.innerHTML = ''; return; }
+
+  const maxV = Math.max(1, ...days.map(d => d.contracts));
+  const barW = chartW / days.length;
+
+  const tickCount = Math.min(4, maxV);
+  const ticks = [];
+  for (let i = 0; i <= tickCount; i++) {
+    const v = Math.round(maxV * i / tickCount);
+    const y = pad.t + chartH - (v/maxV) * chartH;
+    ticks.push({ v, y });
+  }
+  const gridLines = ticks.map(t =>
+    `<line class="grid" x1="${pad.l}" x2="${pad.l + chartW}" y1="${t.y}" y2="${t.y}"/>` +
+    `<text class="tick" x="${pad.l - 4}" y="${t.y + 3}" text-anchor="end">${t.v}</text>`
+  ).join('');
+
+  const bars = days.map((d, i) => {
+    const x = pad.l + i * barW;
+    const cH = (d.contracts/maxV) * chartH;
+    const pH = (d.paid/maxV) * chartH;
+    const w = Math.max(1, barW * 0.4);
+    const gap = barW * 0.05;
+    return `
+      <rect class="bar-c" x="${x + gap}" y="${pad.t + chartH - cH}" width="${w}" height="${cH}" rx="1"/>
+      <rect class="bar-p" x="${x + gap + w}" y="${pad.t + chartH - pH}" width="${w}" height="${pH}" rx="1"/>
+    `;
+  }).join('');
+
+  const xLabelEvery = Math.max(1, Math.ceil(days.length / 8));
+  const xLabels = days.map((d, i) => {
+    if (i % xLabelEvery !== 0) return '';
+    const x = pad.l + i * barW + barW/2;
+    return `<text class="tick" x="${x}" y="${H - pad.b + 14}" text-anchor="middle">${d.day.slice(5)}</text>`;
+  }).join('');
+
+  const axis = `<line class="axis" x1="${pad.l}" x2="${pad.l + chartW}" y1="${pad.t + chartH}" y2="${pad.t + chartH}"/>`;
+
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.innerHTML = gridLines + bars + axis + xLabels;
+}
+
+function renderPromoCallout(promo, range, rows){
+  const el = document.getElementById('promo-callout');
+  el.style.display = '';
+  if (rows.length < 4) {
+    el.innerHTML = `
+      <div class="callout-tag">CWYT26</div>
+      <div class="callout-title">데이터 누적 중</div>
+      <div class="callout-body">현재 기간 표본이 작아 자동 추세 분석은 더 모인 뒤에 표시됩니다. 우측 상단 시점에 다시 새로고침해주세요.</div>
+    `;
+    return;
+  }
+  const mid = Math.floor(rows.length / 2);
+  const sum = arr => arr.reduce((s,r)=>s+Number(r.contracts),0);
+  const first = sum(rows.slice(0, mid));
+  const second = sum(rows.slice(mid));
+  const change = first ? Math.round((second - first) / first * 100) : (second > 0 ? 100 : 0);
+  const trendWord = change > 30 ? '가속' : change > 5 ? '증가' : change < -30 ? '둔화' : change < -5 ? '감소' : '안정';
+  const trendArrow = change > 5 ? '↑' : change < -5 ? '↓' : '→';
+  const peak = [...rows].sort((a,b) => Number(b.contracts) - Number(a.contracts))[0];
+
+  el.innerHTML = `
+    <div class="callout-tag">CWYT26 인사이트</div>
+    <div class="callout-title">기간 후반 ${trendArrow} ${trendWord} (${change>=0?'+':''}${change}%)</div>
+    <div class="callout-body">기간 전반 ${first}건 → 후반 ${second}건. 피크는 <strong style="color:#fff">${peak.day}</strong> ${peak.contracts}건. 그 날짜의 영상 업로드 / 숏츠 발행 이력을 매칭하면 잭팟 포맷 식별 가능.</div>
+    <div class="callout-action">스파이크 발생일의 콘텐츠를 위 03·04 섹션에서 교차 확인</div>
+  `;
+}
+
+function fmtRelDuration(iso){
+  // PT4M59S → 4:59, PT1H2M3S → 1:02:03, PT42S → 0:42
+  const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!m) return '';
+  const h = +(m[1]||0), mi = +(m[2]||0), s = +(m[3]||0);
+  const pad = n => String(n).padStart(2,'0');
+  return h ? `${h}:${pad(mi)}:${pad(s)}` : `${mi}:${pad(s)}`;
+}
+
+function escAttr(s){ return String(s).replace(/"/g,'&quot;'); }
+
+function sortVideos(videos, mode){
+  const arr = [...videos];
+  if (mode === 'recent'){
+    arr.sort((a,b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  } else {
+    arr.sort((a,b) => b.views - a.views);
+  }
+  return arr;
+}
+
+function renderVideoList(videos, mode, limit){
+  const sorted = sortVideos(videos, mode).slice(0, limit);
+  if (!sorted.length) return `<div class="live-empty-inline">영상 없음</div>`;
+  return sorted.map(v => `
+    <div class="live-vid">
+      <div class="live-vid-title"><a href="${v.url}" target="_blank" rel="noopener" title="${escAttr(v.title)}">${v.title}</a></div>
+      <div class="live-vid-stats"><span class="v">${fmt(v.views)}</span> · ${fmtRelDuration(v.duration)}</div>
+    </div>
+  `).join('');
+}
+
+function renderLiveChannels(){
+  const grid = document.getElementById('live-grid');
+  const fetchedEl = document.getElementById('yt-fetched-at');
+  const yt = window.YOUTUBE_API_DATA;
+
+  if (!yt || !yt.channels?.length){
+    fetchedEl.textContent = '—';
+    grid.innerHTML = `<div class="live-empty">데이터 없음 — <code>node fetch-youtube.js</code> 또는 <code>./refresh-youtube.ps1</code> 실행</div>`;
+    return;
+  }
+
+  fetchedEl.textContent = new Date(yt.fetchedAt).toLocaleString('ko-KR');
+
+  const LIMIT = 5;
+  const DEFAULT_MODE = 'views';
+
+  grid.innerHTML = yt.channels.map((c, idx) => {
+    const shorts = (c.recentVideos || []).filter(v => v.isShort);
+    const longs  = (c.recentVideos || []).filter(v => !v.isShort);
+
+    return `
+      <div class="live-card" data-channel-idx="${idx}" data-sort-mode="${DEFAULT_MODE}">
+        <div class="live-head">
+          ${c.thumbnail ? `<img class="live-thumb" src="${c.thumbnail}" alt="">` : `<div class="live-thumb"></div>`}
+          <div class="live-meta">
+            <div class="live-title" title="${escAttr(c.title)}">${c.title}</div>
+            <div class="live-handle"><a href="${c.url}" target="_blank" rel="noopener">${c.handle}</a></div>
+          </div>
+        </div>
+        <div class="live-stats">
+          <div>
+            <div class="live-stat-label">구독자</div>
+            <div class="live-stat-value">${fmt(c.subscribers)}</div>
+          </div>
+          <div>
+            <div class="live-stat-label">총 조회수</div>
+            <div class="live-stat-value">${fmt(c.totalViews)}</div>
+          </div>
+          <div>
+            <div class="live-stat-label">영상 수</div>
+            <div class="live-stat-value">${fmt(c.videoCount)}</div>
+          </div>
+        </div>
+
+        <div class="live-sort">
+          <button class="live-sort-btn active" data-mode="views">조회수순</button>
+          <button class="live-sort-btn" data-mode="recent">최신순</button>
+        </div>
+
+        <div class="live-section">
+          <div class="live-section-head">쇼츠 <span class="live-count">${shorts.length}</span></div>
+          <div class="live-shorts-list">${renderVideoList(shorts, DEFAULT_MODE, LIMIT)}</div>
+        </div>
+        <div class="live-section">
+          <div class="live-section-head">롱폼 <span class="live-count">${longs.length}</span></div>
+          <div class="live-longs-list">${renderVideoList(longs, DEFAULT_MODE, LIMIT)}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // 정렬 토글 핸들러
+  grid.querySelectorAll('.live-sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.live-card');
+      const channelIdx = parseInt(card.dataset.channelIdx, 10);
+      const mode = btn.dataset.mode;
+      const channel = yt.channels[channelIdx];
+      const shorts = (channel.recentVideos || []).filter(v => v.isShort);
+      const longs  = (channel.recentVideos || []).filter(v => !v.isShort);
+
+      card.dataset.sortMode = mode;
+      card.querySelectorAll('.live-sort-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.mode === mode);
+      });
+      card.querySelector('.live-shorts-list').innerHTML = renderVideoList(shorts, mode, LIMIT);
+      card.querySelector('.live-longs-list').innerHTML = renderVideoList(longs, mode, LIMIT);
+    });
+  });
+}
+
+function renderUTM(){
+  const grid = document.getElementById('utm-grid');
+  const noteEl = document.getElementById('utm-note');
+  const fetchedEl = document.getElementById('utm-fetched-at');
+  const utm = window.UTM_YOUTUBE_DATA;
+
+  if (!utm){
+    fetchedEl.textContent = '—';
+    grid.innerHTML = `<div class="live-empty" style="grid-column:1/-1">utm-data.js 미생성</div>`;
+    noteEl.style.display = 'none';
+    return;
+  }
+
+  fetchedEl.textContent = new Date(utm.fetchedAt).toLocaleString('ko-KR');
+
+  grid.innerHTML = `
+    <div class="utm-card hero">
+      <div class="utm-label">최근 7일</div>
+      <div class="utm-value">${fmt(utm.last7d)}<span class="u">명</span></div>
+      <div class="utm-sub">신규 유입 유저</div>
+    </div>
+    <div class="utm-card">
+      <div class="utm-label">최근 30일</div>
+      <div class="utm-value">${fmt(utm.last30d)}<span class="u">명</span></div>
+      <div class="utm-sub">신규 유입 유저</div>
+    </div>
+    <div class="utm-card">
+      <div class="utm-label">최근 90일</div>
+      <div class="utm-value">${fmt(utm.last90d)}<span class="u">명</span></div>
+      <div class="utm-sub">신규 유입 유저</div>
+    </div>
+    <div class="utm-card">
+      <div class="utm-label">지난 1년</div>
+      <div class="utm-value">${fmt(utm.last365d)}<span class="u">명</span></div>
+      <div class="utm-sub">${utm.sinceDataStart} 부터 측정</div>
+    </div>
+  `;
+
+  noteEl.innerHTML = utm.note
+    ? `📌 ${utm.note}`
+    : `Amplitude의 <span class="v">gp:initial_utm_source</span>가 "youtube"인 유저를 카운트. 최초 유입 기준.`;
+}
+
+function renderAITrending(){
+  const card = document.getElementById('ai-card');
+  const fetchedEl = document.getElementById('ai-fetched-at');
+  const yt = window.YOUTUBE_API_DATA;
+  const trend = yt?.trendingStartup;
+
+  if (!trend || !trend.videos?.length){
+    fetchedEl.textContent = '—';
+    card.innerHTML = `<div class="live-empty" style="border:none;padding:32px">데이터 없음 — node fetch-youtube.js 실행 후 채워집니다</div>`;
+    return;
+  }
+
+  fetchedEl.textContent = `최근 ${trend.lookbackDays}일 · ${new Date(trend.fetchedAt).toLocaleString('ko-KR')}`;
+
+  const kwBar = `
+    <div class="ai-kw-bar">
+      <span class="lbl">키워드</span>
+      ${trend.keywords.map(k => `<span class="kw">${k}</span>`).join('')}
+    </div>`;
+
+  const rows = trend.videos.map((v, i) => {
+    const days = Math.round((Date.now() - new Date(v.publishedAt)) / 86400000);
+    const dayText = days === 0 ? '오늘' : `${days}일 전`;
+    const matched = v.matchedKeywords && v.matchedKeywords.length
+      ? v.matchedKeywords.map(k => `<span class="tag">${k}</span>`).join('')
+      : '';
+    return `
+      <div class="ai-vid-row">
+        <div class="ai-vid-rank ${i===0?'star':''}">${i===0?'★':i+1}</div>
+        ${v.thumbnail ? `<img class="ai-vid-thumb" src="${v.thumbnail}" alt="">` : `<div class="ai-vid-thumb"></div>`}
+        <div class="ai-vid-body">
+          <div class="ai-vid-title"><a href="${v.url}" target="_blank" rel="noopener" title="${escAttr(v.title)}">${v.title}</a></div>
+          <div class="ai-vid-meta">
+            <span class="ch">${v.channelTitle}</span>
+            <span>· ${dayText}</span>
+            <span>· ${fmtRelDuration(v.duration)}</span>
+            ${matched}
+          </div>
+        </div>
+        <div class="ai-vid-views">${fmt(v.views)}<span class="u">회</span></div>
+      </div>`;
+  }).join('');
+
+  card.innerHTML = kwBar + rows;
 }
 
 function renderAll(){
   renderHeaderRight();
-  renderTabs();
-  renderMetrics();
-  renderVerdict();
+  syncDateInputs();
+  renderPromo();
 }
 
 // 일회성 렌더
 renderHeader();
-renderTopContent();
 renderVideoReach();
-renderHypotheses();
+renderUpdatedAt();
+renderLiveChannels();
+renderUTM();
+renderAITrending();
 renderAll();
 
 document.getElementById('cd-apply').addEventListener('click', applyCustom);
