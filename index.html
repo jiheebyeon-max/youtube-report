@@ -283,12 +283,12 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
     <div class="callout" id="callout"></div>
   </section>
 
-  <!-- 04 유튜브 → 홈페이지 UTM 유입 -->
+  <!-- 04 유튜브 → 홈페이지 유입 (referrer 기준) -->
   <section class="section">
     <div class="section-head">
       <div class="section-num">04</div>
       <div class="section-title">🌐 유튜브 → 홈페이지 유입</div>
-      <div class="section-sub">Amplitude · gp:initial_utm_source = "youtube" · <span id="utm-fetched-at">—</span></div>
+      <div class="section-sub">Amplitude · referrer = youtube.com · <span id="utm-fetched-at">—</span></div>
     </div>
     <div class="utm-grid" id="utm-grid"></div>
     <div class="utm-note" id="utm-note"></div>
@@ -831,32 +831,36 @@ function renderUTM(){
 
   fetchedEl.textContent = new Date(utm.fetchedAt).toLocaleString('ko-KR');
 
+  const momPct = utm.lastMonth ? Math.round((utm.thisMonth - utm.lastMonth) / utm.lastMonth * 100) : null;
+  const momText = momPct === null ? '' : (momPct > 0 ? `+${momPct}%` : `${momPct}%`);
+  const momColor = momPct === null ? 'var(--mute)' : (momPct >= 0 ? 'var(--brand)' : 'var(--neg)');
+
   grid.innerHTML = `
     <div class="utm-card hero">
-      <div class="utm-label">최근 7일</div>
-      <div class="utm-value">${fmt(utm.last7d)}<span class="u">명</span></div>
-      <div class="utm-sub">신규 유입 유저</div>
+      <div class="utm-label">이번 주</div>
+      <div class="utm-value">${fmt(utm.thisWeek)}<span class="u">명</span></div>
+      <div class="utm-sub">월~일 누적</div>
     </div>
     <div class="utm-card">
-      <div class="utm-label">최근 30일</div>
-      <div class="utm-value">${fmt(utm.last30d)}<span class="u">명</span></div>
-      <div class="utm-sub">신규 유입 유저</div>
+      <div class="utm-label">이번 달</div>
+      <div class="utm-value">${fmt(utm.thisMonth)}<span class="u">명</span></div>
+      <div class="utm-sub">진행 중 · 지난달 대비 <span style="color:${momColor};font-weight:800">${momText}</span></div>
     </div>
     <div class="utm-card">
-      <div class="utm-label">최근 90일</div>
-      <div class="utm-value">${fmt(utm.last90d)}<span class="u">명</span></div>
-      <div class="utm-sub">신규 유입 유저</div>
+      <div class="utm-label">지난 달</div>
+      <div class="utm-value">${fmt(utm.lastMonth)}<span class="u">명</span></div>
+      <div class="utm-sub">한 달 완료치</div>
     </div>
     <div class="utm-card">
-      <div class="utm-label">지난 1년</div>
-      <div class="utm-value">${fmt(utm.last365d)}<span class="u">명</span></div>
-      <div class="utm-sub">${utm.sinceDataStart} 부터 측정</div>
+      <div class="utm-label">올해 누적</div>
+      <div class="utm-value">${fmt(utm.thisYear)}<span class="u">명</span></div>
+      <div class="utm-sub">2025년: ${fmt(utm.lastYear)}명</div>
     </div>
   `;
 
   noteEl.innerHTML = utm.note
     ? `📌 ${utm.note}`
-    : `Amplitude의 <span class="v">gp:initial_utm_source</span>가 "youtube"인 유저를 카운트. 최초 유입 기준.`;
+    : `Amplitude의 <span class="v">referrer = youtube.com</span> 기반 유입. UTM 태그 없이도 추적됨.`;
 }
 
 function renderAITrending(){
