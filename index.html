@@ -266,26 +266,15 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
     <div class="section-head">
       <div class="section-num">02</div>
       <div class="section-title">채널 라이브 수집 <span style="font-weight:400;color:var(--mute);font-family:'Pretendard',sans-serif;font-size:15px">· YouTube Data API</span></div>
-      <div class="section-sub">매일 10/12/14/16/18시 자동 갱신 · 마지막: <span id="yt-fetched-at" class="live-fetched">—</span></div>
+      <div class="section-sub">매일 아침 10시 자동 갱신 · 마지막: <span id="yt-fetched-at" class="live-fetched">—</span></div>
     </div>
     <div class="live-grid" id="live-grid"></div>
   </section>
 
-  <!-- 03 VIDEO REACH COMPARISON -->
+  <!-- 03 유튜브 → 홈페이지 유입 (referrer 기준) -->
   <section class="section">
     <div class="section-head">
       <div class="section-num">03</div>
-      <div class="section-title">CTR TOP 5</div>
-      <div class="section-sub" id="vid-note"></div>
-    </div>
-    <div class="vid-grid" id="vid-grid"></div>
-    <div class="callout" id="callout"></div>
-  </section>
-
-  <!-- 04 유튜브 → 홈페이지 유입 (referrer 기준) -->
-  <section class="section">
-    <div class="section-head">
-      <div class="section-num">04</div>
       <div class="section-title">🌐 유튜브 → 홈페이지 유입</div>
       <div class="section-sub">Amplitude · referrer = youtube.com · <span id="utm-fetched-at">—</span></div>
     </div>
@@ -293,10 +282,10 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
     <div class="utm-note" id="utm-note"></div>
   </section>
 
-  <!-- 05 AI 추천 · 창업 핫토픽 -->
+  <!-- 04 AI 추천 · 창업 핫토픽 -->
   <section class="section">
     <div class="section-head">
-      <div class="section-num">05</div>
+      <div class="section-num">04</div>
       <div class="section-title">🔥 AI 추천 · 오늘의 창업 콘텐츠</div>
       <div class="section-sub">키워드 검색 자동 큐레이션 · <span id="ai-fetched-at">—</span></div>
     </div>
@@ -352,51 +341,6 @@ function renderHeaderRight(){
   document.getElementById('header-right').innerHTML = `
     <div class="period-chip">🔄 매일 10시 자동</div>
     <div>최근 갱신 ${fetched}</div>
-  `;
-}
-
-function renderVideoReach(){
-  document.getElementById('vid-note').textContent = data.video_reach.note;
-  const maxCtr = Math.max(...data.video_reach.videos.map(v => v.ctr_pct));
-  const sorted = [...data.video_reach.videos].sort((a,b) => b.ctr_pct - a.ctr_pct);
-  const head = `
-    <div class="vid-row head">
-      <div>#</div>
-      <div>제목</div>
-      <div style="text-align:right">길이</div>
-      <div>CTR</div>
-      <div style="text-align:right">노출수</div>
-      <div style="text-align:right">조회수</div>
-    </div>`;
-  const rows = sorted.map((v, i) => {
-    const pct = (v.ctr_pct / maxCtr) * 100;
-    const isGold = v.highlight && i < 2;
-    return `
-      <div class="vid-row ${isGold?'gold':''}">
-        <div class="vid-rank ${i===0?'star':''}">${i===0?'★':i+1}</div>
-        <div class="vid-title">
-          <div class="t">${v.title}</div>
-          <div class="m">
-            <span class="tag">${v.topic_tag}</span>
-            <span>게시 후 ${v.days_since_published}일</span>
-            <span>순 시청 ${v.unique_viewers_display}</span>
-          </div>
-        </div>
-        <div class="vid-dur">${v.duration}</div>
-        <div class="vid-bar-wrap">
-          <div class="vid-bar"><div class="vid-bar-fill ${isGold?'gold':''}" style="width:${pct}%"></div></div>
-          <div class="vid-ctr">${v.ctr_pct.toFixed(1)}%</div>
-        </div>
-        <div class="vid-num">${v.impressions_display}</div>
-        <div class="vid-num">${v.views_display}</div>
-      </div>`;
-  }).join('');
-  document.getElementById('vid-grid').innerHTML = head + rows;
-  document.getElementById('callout').innerHTML = `
-    <div class="callout-tag">Insight</div>
-    <div class="callout-title">${data.insight_callout.title}</div>
-    <div class="callout-body">${data.insight_callout.body}</div>
-    <div class="callout-action">${data.insight_callout.action}</div>
   `;
 }
 
@@ -908,7 +852,6 @@ function renderAll(){
 
 // 일회성 렌더
 renderHeader();
-renderVideoReach();
 renderUpdatedAt();
 renderLiveChannels();
 renderUTM();
