@@ -69,3 +69,26 @@ Write-Host "   Time:     $now"
 Write-Host "   Code:     $($meta.code) ($($meta.partner))"
 Write-Host "   Total:    $totalContracts contracts / $totalPaid paid"
 Write-Host "   Days:     $($daily.Count) days of data"
+
+# --- Vercel 라이브 반영: 변경된 대시보드 데이터 자동 커밋 & 푸시 ---
+# 대시보드는 GitHub(origin/main) → Vercel 자동 배포. push해야 라이브 사이트에 반영됨.
+Write-Host ""
+Write-Host "Syncing to GitHub -> Vercel..." -ForegroundColor Cyan
+try {
+    & git add promo-data.js youtube-data.js utm-data.js 2>&1 | Out-Null
+    $staged = & git diff --cached --name-only
+    if ($staged) {
+        $stamp = (Get-Date).ToString("yyyy-MM-dd HH:mm")
+        & git commit -m "auto: refresh dashboard data ($stamp)" 2>&1 | Out-Null
+        & git push 2>&1 | Out-Null
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "✅ Pushed: $($staged -join ', ') -> Vercel redeploy triggered" -ForegroundColor Green
+        } else {
+            Write-Host "⚠️ git push failed (exit $LASTEXITCODE) - 라이브 미반영, 로컬은 최신" -ForegroundColor Yellow
+        }
+    } else {
+        Write-Host "변경 없음 - push 생략" -ForegroundColor DarkGray
+    }
+} catch {
+    Write-Host "⚠️ git 단계 오류: $($_.Exception.Message)" -ForegroundColor Yellow
+}

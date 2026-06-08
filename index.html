@@ -238,27 +238,26 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
   <!-- HEADER -->
   <header class="header" id="header"></header>
 
-  <!-- DATE RANGE PICKER -->
-  <div class="custom-row" id="custom-row">
-    <span class="range-label">📅 기간</span>
-    <label>FROM</label>
-    <input type="date" id="cd-from">
-    <label>TO</label>
-    <input type="date" id="cd-to">
-    <button id="cd-apply">적용</button>
-    <span class="hint">CWYT26 차트 + Studio 평가가 선택한 기간으로 좁혀집니다</span>
-  </div>
-
   <!-- 01 YOUTUBE 할인 코드 사용량 (CWYT26) -->
-  <section class="section">
+  <section class="section" style="margin-top:36px">
     <div class="section-head">
       <div class="section-num">01</div>
       <div class="section-title">유튜브 할인 코드 사용량 <span style="font-weight:400;color:var(--mute);font-family:'Pretendard',sans-serif;font-size:15px">· CWYT26</span></div>
       <div class="section-sub" id="promo-period-label"></div>
     </div>
-    <div class="cumul-card" id="cumul-card" style="display:none"></div>
-    <div class="mom-badge" id="mom-badge" style="display:none"></div>
     <div class="ns-grid" id="promo-grid"></div>
+    <div class="promo-chart-card" id="promo-chart-card" style="display:none">
+      <div class="promo-chart-head">
+        <div class="promo-chart-title">최근 14일 추세</div>
+        <div class="promo-chart-legend">
+          <span class="lg"><span class="sw" style="background:var(--brand)"></span>계약</span>
+          <span class="lg"><span class="sw" style="background:var(--gold)"></span>결제</span>
+        </div>
+      </div>
+      <svg class="promo-svg" id="promo-svg"></svg>
+    </div>
+    <div class="cumul-card" id="cumul-card" style="display:none;margin-top:14px"></div>
+    <div class="mom-badge" id="mom-badge" style="display:none"></div>
     <div class="callout" id="promo-callout" style="margin-top:14px"></div>
   </section>
 
@@ -318,21 +317,6 @@ html,body{background:var(--bg);color:var(--ink);font-family:'Pretendard','Inter'
 <script src="utm-data.js"></script>
 <script>
 const data = window.REPORT_DATA;
-const currentKey = "custom"; // 항상 사용자 지정 기간 모드
-
-// 초기 디폴트 기간: 오늘 기준 지난 28일
-(function initDefaultRange(){
-  const today = new Date();
-  const from = new Date(today);
-  from.setDate(today.getDate() - 27);
-  const toIso = today.toISOString().slice(0,10);
-  const fromIso = from.toISOString().slice(0,10);
-  // data.periods.custom이 비어있으면 디폴트 채움
-  if (!data.periods.custom.from || !data.periods.custom.to){
-    data.periods.custom.from = fromIso;
-    data.periods.custom.to = toIso;
-  }
-})();
 
 function fmtDate(d){
   const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
@@ -361,18 +345,14 @@ function renderHeader(){
 }
 
 function renderHeaderRight(){
-  const p = data.periods[currentKey];
-  const range = (p.from && p.to) ? `${p.from} ~ ${p.to}` : '기간 미설정';
+  const promo = window.PROMO_CWYT26;
+  const fetched = promo
+    ? new Date(promo.fetchedAt).toLocaleString('ko-KR', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})
+    : '—';
   document.getElementById('header-right').innerHTML = `
-    <div class="period-chip">📅 기간</div>
-    <div>${range}</div>
+    <div class="period-chip">🔄 매일 10시 자동</div>
+    <div>최근 갱신 ${fetched}</div>
   `;
-}
-
-function syncDateInputs(){
-  const p = data.periods[currentKey];
-  if (p.from) document.getElementById('cd-from').value = p.from;
-  if (p.to)   document.getElementById('cd-to').value = p.to;
 }
 
 function renderVideoReach(){
@@ -424,34 +404,12 @@ function renderUpdatedAt(){
   document.getElementById('updated-at').textContent = data.updated_at;
 }
 
-function applyCustom(){
-  const from = document.getElementById('cd-from').value;
-  const to   = document.getElementById('cd-to').value;
-  if (!from || !to) {
-    alert('FROM 과 TO 모두 선택해주세요.');
-    return;
-  }
-  if (from > to) {
-    alert('FROM 이 TO 보다 늦을 수 없습니다.');
-    return;
-  }
-  data.periods.custom.from = from;
-  data.periods.custom.to = to;
-  renderAll();
-}
-
-// ===== PROMO CODE (CWYT26) =====
-function getPromoRange(){
-  if (!window.PROMO_CWYT26) return null;
-  const p = data.periods[currentKey];
-  if (p.from && p.to) return { from: p.from, to: p.to };
-  return null;
-}
-
+// ===== PROMO CODE (CWYT26) — 오늘 중심 자동 화면 =====
 function renderPromo(){
   const promo = window.PROMO_CWYT26;
   const labelEl = document.getElementById('promo-period-label');
   const gridEl = document.getElementById('promo-grid');
+  const chartCard = document.getElementById('promo-chart-card');
   const calloutEl = document.getElementById('promo-callout');
 
   if (!promo) {
@@ -462,55 +420,69 @@ function renderPromo(){
       <div class="ns-vs">데이터 없음</div>
       <div class="ns-sub">./refresh-promo.ps1 실행하면 채워집니다</div>
     </div>`;
+    chartCard.style.display = 'none';
     calloutEl.style.display = 'none';
+    document.getElementById('cumul-card').style.display = 'none';
+    document.getElementById('mom-badge').style.display = 'none';
     return;
   }
 
-  const range = getPromoRange();
-  if (!range) {
-    labelEl.textContent = '기간 미설정';
-    gridEl.innerHTML = `<div class="ns-card empty" style="grid-column:1/-1">
-      <div class="ns-label">CWYT26</div>
-      <div class="ns-value">—</div>
-      <div class="ns-vs">상단 기간 미설정</div>
-      <div class="ns-sub">FROM/TO 달력 입력</div>
-    </div>`;
-    calloutEl.style.display = 'none';
-    return;
-  }
+  const map = new Map();
+  promo.daily.forEach(d => map.set(d.day, d));
+  const get = iso => map.get(iso) || { contracts: 0, paid: 0 };
 
-  const rows = promo.daily.filter(d => d.day >= range.from && d.day <= range.to);
-  const c = rows.reduce((s,r) => s + r.contracts, 0);
-  const p = rows.reduce((s,r) => s + r.paid, 0);
-  const days = Math.round((new Date(range.to+'T00:00:00') - new Date(range.from+'T00:00:00'))/86400000) + 1;
-  const avg = (c/days).toFixed(2);
+  const today = new Date();
+  const addDays = (n) => { const d = new Date(today); d.setDate(today.getDate() + n); return fmtDate(d); };
+  const todayKey = fmtDate(today);
+  const yKey = addDays(-1);
 
-  labelEl.textContent = `${range.from} ~ ${range.to} · 누적 ${promo.total.contracts}건 (전체)`;
+  // 최근 7일 (오늘 포함)
+  let c7 = 0, p7 = 0;
+  for (let i = 0; i < 7; i++){ const r = get(addDays(-i)); c7 += r.contracts; p7 += r.paid; }
+
+  // 이번 달 (1일~오늘)
+  const monthStart = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-01`;
+  let cM = 0, pM = 0;
+  promo.daily.forEach(r => { if (r.day >= monthStart && r.day <= todayKey){ cM += r.contracts; pM += r.paid; } });
+
+  const td = get(todayKey);
+  const yd = get(yKey);
+  const monthName = today.getMonth() + 1;
+
+  const fetchedLocal = new Date(promo.fetchedAt).toLocaleString('ko-KR', {month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+  labelEl.textContent = `매일 아침 10시 자동 갱신 · 마지막 ${fetchedLocal}`;
 
   gridEl.innerHTML = `
-    <div class="ns-card hero" style="background:var(--gold);border-color:var(--gold)">
-      <div class="ns-label">계약 (선택 기간)</div>
-      <div class="ns-value">${c}</div>
-      <div class="ns-vs">코드 입력 → 신청</div>
-      <div class="ns-sub">전체 누적 ${promo.total.contracts}건 중 ${days}일치</div>
+    <div class="ns-card hero">
+      <div class="ns-label">오늘 · ${todayKey.slice(5)}</div>
+      <div class="ns-value">${td.contracts}</div>
+      <div class="ns-vs">계약 (코드 입력 → 신청)</div>
+      <div class="ns-sub">결제 완료 ${td.paid}건</div>
     </div>
     <div class="ns-card">
-      <div class="ns-label">첫 결제 완료</div>
-      <div class="ns-value">${p}</div>
-      <div class="ns-vs">실제 매출 발생</div>
-      <div class="ns-sub">전체 누적 ${promo.total.paid}건</div>
+      <div class="ns-label">어제</div>
+      <div class="ns-value">${yd.contracts}</div>
+      <div class="ns-vs">계약</div>
+      <div class="ns-sub">결제 ${yd.paid}건</div>
     </div>
     <div class="ns-card">
-      <div class="ns-label">일평균</div>
-      <div class="ns-value">${avg}</div>
-      <div class="ns-vs">건/일</div>
-      <div class="ns-sub">${days}일 평균</div>
+      <div class="ns-label">최근 7일</div>
+      <div class="ns-value">${c7}</div>
+      <div class="ns-vs">계약</div>
+      <div class="ns-sub">결제 ${p7}건 · 일평균 ${(c7/7).toFixed(1)}건</div>
+    </div>
+    <div class="ns-card">
+      <div class="ns-label">${monthName}월 (1일~오늘)</div>
+      <div class="ns-value">${cM}</div>
+      <div class="ns-vs">계약</div>
+      <div class="ns-sub">결제 ${pM}건</div>
     </div>
   `;
 
+  renderPromoTrend(today);
   renderCumulativeCard(promo);
   renderMoMBadge(promo);
-  renderPromoCallout(promo, range, rows);
+  renderRecentCallout(promo, today);
 }
 
 function renderCumulativeCard(promo){
@@ -675,17 +647,37 @@ function renderPromoSvg(range){
   svg.innerHTML = gridLines + bars + axis + xLabels;
 }
 
-function renderPromoCallout(promo, range, rows){
+// 최근 14일 추세 차트 (오늘로 끝나는 고정 윈도우)
+function renderPromoTrend(today){
+  const card = document.getElementById('promo-chart-card');
+  card.style.display = '';
+  const from = new Date(today); from.setDate(today.getDate() - 13);
+  renderPromoSvg({ from: fmtDate(from), to: fmtDate(today) });
+}
+
+// 최근 14일 기준 인사이트 콜아웃
+function renderRecentCallout(promo, today){
   const el = document.getElementById('promo-callout');
   el.style.display = '';
-  if (rows.length < 4) {
+
+  const map = new Map();
+  promo.daily.forEach(d => map.set(d.day, d));
+  const rows = [];
+  for (let i = 13; i >= 0; i--){
+    const d = new Date(today); d.setDate(today.getDate() - i);
+    const k = fmtDate(d);
+    rows.push(map.get(k) || { day: k, contracts: 0, paid: 0 });
+  }
+
+  if (rows.filter(r => r.contracts > 0).length < 4) {
     el.innerHTML = `
       <div class="callout-tag">CWYT26</div>
       <div class="callout-title">데이터 누적 중</div>
-      <div class="callout-body">현재 기간 표본이 작아 자동 추세 분석은 더 모인 뒤에 표시됩니다. 우측 상단 시점에 다시 새로고침해주세요.</div>
+      <div class="callout-body">최근 14일 표본이 작아 자동 추세 분석은 더 모인 뒤에 표시됩니다. 데이터는 매일 아침 10시에 자동 갱신됩니다.</div>
     `;
     return;
   }
+
   const mid = Math.floor(rows.length / 2);
   const sum = arr => arr.reduce((s,r)=>s+Number(r.contracts),0);
   const first = sum(rows.slice(0, mid));
@@ -697,9 +689,9 @@ function renderPromoCallout(promo, range, rows){
 
   el.innerHTML = `
     <div class="callout-tag">CWYT26 인사이트</div>
-    <div class="callout-title">기간 후반 ${trendArrow} ${trendWord} (${change>=0?'+':''}${change}%)</div>
-    <div class="callout-body">기간 전반 ${first}건 → 후반 ${second}건. 피크는 <strong style="color:#fff">${peak.day}</strong> ${peak.contracts}건. 그 날짜의 영상 업로드 / 숏츠 발행 이력을 매칭하면 잭팟 포맷 식별 가능.</div>
-    <div class="callout-action">스파이크 발생일의 콘텐츠를 위 03·04 섹션에서 교차 확인</div>
+    <div class="callout-title">최근 14일 ${trendArrow} ${trendWord} (${change>=0?'+':''}${change}%)</div>
+    <div class="callout-body">전반 7일 ${first}건 → 후반 7일 ${second}건. 피크는 <strong style="color:#fff">${peak.day}</strong> ${peak.contracts}건. 그 날짜의 영상 업로드 / 숏츠 발행 이력을 매칭하면 잭팟 포맷 식별 가능.</div>
+    <div class="callout-action">스파이크 발생일의 콘텐츠를 02·03·04 섹션에서 교차 확인</div>
   `;
 }
 
@@ -911,7 +903,6 @@ function renderAITrending(){
 
 function renderAll(){
   renderHeaderRight();
-  syncDateInputs();
   renderPromo();
 }
 
@@ -924,7 +915,8 @@ renderUTM();
 renderAITrending();
 renderAll();
 
-document.getElementById('cd-apply').addEventListener('click', applyCustom);
+// 탭을 열어두면 30분마다 자동 새로고침 → 10시 자동 갱신/배포분을 자동 반영
+setTimeout(() => location.reload(), 30 * 60 * 1000);
 </script>
 
 </body>
