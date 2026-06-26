@@ -1,2 +1,2 @@
 // YouTube → 홈페이지 유입 (referrer) - auto-synced from Notion
-window.UTM_YOUTUBE_DATA = {"source":"youtube","property":"gp:initial_referring_domain","measurementMethod":"referrer","fetchedAt":"2026-06-23T01:15:58Z","thisWeek":1,"thisMonth":33,"lastMonth":74,"thisYear":781,"lastYear":143,"note":"Amplitude referrer 기반. utm 태그 없이도 추적됨."};
+window.UTM_YOUTUBE_DATA = {"source": "youtube", "property": "gp:initial_referring_domain", "measurementMethod": "referrer", "fetchedAt": "2026-06-26T01:16:28Z", "thisWeek": 9, "thisMonth": 40, "lastMonth": 74, "thisYear": 776, "lastYear": 142, "note": "Amplitude referrer 기반. utm 태그 없이도 추적됨."};
