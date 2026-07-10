@@ -1,2 +1,2 @@
 // CWYT26 - auto-synced from Notion
-window.PROMO_CWYT26 = {"fetchedAt":"2026-07-09T01:15:58Z","code":"CWYT26","partner":"지니수","status":"active","discount":{"individual":10,"corp":0},"total":{"contracts":73,"paid":70},"daily":[]};
+window.PROMO_CWYT26 = {"fetchedAt":"2026-07-10T01:16:22Z","code":"CWYT26","partner":"지니수","status":"active","discount":{"individual":10,"corp":0},"total":{"contracts":73,"paid":70},"daily":[]};
